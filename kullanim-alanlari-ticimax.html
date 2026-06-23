@@ -1,0 +1,397 @@
+<!-- ================================================================= -->
+<!-- LyoMix® Kullanım Alanları & Tarifler — TICIMAX İÇERİK SAYFASI     -->
+<!-- Ticimax > İçerik > Sayfa Yönetimi > Yeni Sayfa > HTML (kod) modu  -->
+<!-- Tüm bu bloğu olduğu gibi kopyalayıp yapıştırın.                   -->
+<!-- Tüm stiller .lyomix-page altına hapsedildi; tema ile çakışmaz.    -->
+<!-- ================================================================= -->
+
+<div class="lyomix-page">
+<style>
+  .lyomix-page{
+    --lyo-bg:#fffdf9;
+    --lyo-ink:#2a2320;
+    --lyo-muted:#6b625b;
+    --lyo-line:#efe7dc;
+    --lyo-brand:#e0457b;
+    --lyo-brand-2:#ff7a3d;
+    --lyo-card:#ffffff;
+    --lyo-shadow:0 10px 30px rgba(60,40,20,.08);
+    --lyo-radius:20px;
+    font-family:"Segoe UI",Roboto,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    color:var(--lyo-ink);
+    background:var(--lyo-bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    display:block;
+  }
+  .lyomix-page *{box-sizing:border-box}
+  .lyomix-page .lyo-wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  .lyomix-page .lyo-section{padding:72px 0}
+  .lyomix-page h2.lyo-title{
+    font-size:clamp(26px,4vw,40px);
+    line-height:1.2;letter-spacing:-.5px;margin:0 0 8px;color:var(--lyo-ink);
+  }
+  .lyomix-page .lyo-lead{color:var(--lyo-muted);max-width:680px;margin:0 0 40px;font-size:17px}
+  .lyomix-page .lyo-eyebrow{
+    display:inline-block;font-size:13px;font-weight:700;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--lyo-brand);margin-bottom:14px;
+  }
+
+  /* HERO */
+  .lyomix-page .lyo-hero{
+    position:relative;
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(255,122,61,.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 10%, rgba(224,69,123,.16), transparent 55%),
+      linear-gradient(180deg,#fff7f0,#fffdf9);
+    padding:96px 0 80px;overflow:hidden;border-bottom:1px solid var(--lyo-line);
+  }
+  .lyomix-page .lyo-hero .lyo-badge{
+    display:inline-flex;align-items:center;gap:8px;background:#fff;
+    border:1px solid var(--lyo-line);border-radius:999px;padding:8px 16px;
+    font-size:14px;font-weight:600;color:var(--lyo-muted);box-shadow:var(--lyo-shadow);margin-bottom:22px;
+  }
+  .lyomix-page .lyo-hero h1{
+    font-size:clamp(34px,6vw,62px);line-height:1.05;letter-spacing:-1.5px;
+    font-weight:800;max-width:900px;margin:0;color:var(--lyo-ink);
+  }
+  .lyomix-page .lyo-hero h1 .lyo-grad{
+    background:linear-gradient(90deg,var(--lyo-brand),var(--lyo-brand-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .lyomix-page .lyo-hero p.lyo-sub{font-size:clamp(17px,2.2vw,21px);color:var(--lyo-muted);max-width:640px;margin:20px 0 0}
+  .lyomix-page .lyo-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .lyomix-page .lyo-btn{
+    display:inline-block;padding:14px 26px;border-radius:999px;font-weight:700;
+    text-decoration:none;font-size:15px;transition:transform .15s ease, box-shadow .15s ease;cursor:pointer;
+  }
+  .lyomix-page .lyo-btn-primary{background:linear-gradient(90deg,var(--lyo-brand),var(--lyo-brand-2));color:#fff;box-shadow:0 8px 22px rgba(224,69,123,.35)}
+  .lyomix-page .lyo-btn-primary:hover{transform:translateY(-2px);color:#fff}
+  .lyomix-page .lyo-btn-ghost{background:#fff;border:1px solid var(--lyo-line);color:var(--lyo-ink)}
+  .lyomix-page .lyo-btn-ghost:hover{transform:translateY(-2px)}
+  .lyomix-page .lyo-hero-emojis{font-size:30px;margin-top:40px;letter-spacing:6px;opacity:.95}
+
+  /* TRUST STRIP */
+  .lyomix-page .lyo-strip{background:#fff;border-bottom:1px solid var(--lyo-line)}
+  .lyomix-page .lyo-strip .lyo-wrap{display:flex;flex-wrap:wrap;gap:24px 48px;justify-content:center;padding:26px 22px}
+  .lyomix-page .lyo-strip .lyo-item{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--lyo-ink);font-size:15px}
+  .lyomix-page .lyo-strip .lyo-item .lyo-ico{font-size:22px}
+
+  /* PRODUCT CARDS */
+  .lyomix-page .lyo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+  .lyomix-page .lyo-product{
+    background:var(--lyo-card);border:1px solid var(--lyo-line);border-radius:var(--lyo-radius);
+    padding:26px;box-shadow:var(--lyo-shadow);position:relative;overflow:hidden;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .lyomix-page .lyo-product:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(60,40,20,.12)}
+  .lyomix-page .lyo-product::before{content:"";position:absolute;top:0;bottom:0;left:0;width:6px;background:var(--lyo-accent,#ccc)}
+  .lyomix-page .lyo-product .lyo-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .lyomix-page .lyo-product .lyo-emoji{font-size:34px;line-height:1}
+  .lyomix-page .lyo-product .lyo-name{font-size:20px;font-weight:800}
+  .lyomix-page .lyo-product .lyo-en{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--lyo-muted);text-transform:uppercase}
+  .lyomix-page .lyo-product ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+  .lyomix-page .lyo-product li{position:relative;padding-left:22px;font-size:15.5px;color:#3c3530}
+  .lyomix-page .lyo-product li::before{content:"";position:absolute;left:0;top:10px;width:9px;height:9px;border-radius:50%;background:var(--lyo-accent,#ccc)}
+
+  /* USAGE TIPS */
+  .lyomix-page .lyo-tips-band{background:linear-gradient(180deg,#fff7f0,#fffdf9);border-top:1px solid var(--lyo-line);border-bottom:1px solid var(--lyo-line)}
+  .lyomix-page .lyo-tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+  .lyomix-page .lyo-tip{background:#fff;border:1px solid var(--lyo-line);border-radius:var(--lyo-radius);padding:28px;box-shadow:var(--lyo-shadow)}
+  .lyomix-page .lyo-tip .lyo-tic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;background:#fff3ec}
+  .lyomix-page .lyo-tip h3{font-size:19px;margin:0 0 8px;color:var(--lyo-ink)}
+  .lyomix-page .lyo-tip p{color:var(--lyo-muted);font-size:15px;margin:0}
+
+  /* RECIPES */
+  .lyomix-page .lyo-recipes{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+  .lyomix-page .lyo-recipe{background:var(--lyo-card);border:1px solid var(--lyo-line);border-radius:var(--lyo-radius);overflow:hidden;box-shadow:var(--lyo-shadow);display:flex;flex-direction:column;transition:transform .18s ease}
+  .lyomix-page .lyo-recipe:hover{transform:translateY(-4px)}
+  .lyomix-page .lyo-recipe .lyo-banner{padding:22px 24px;color:#fff;display:flex;align-items:center;gap:12px;background:linear-gradient(120deg,var(--lyo-c1),var(--lyo-c2))}
+  .lyomix-page .lyo-recipe .lyo-banner .lyo-e{font-size:30px}
+  .lyomix-page .lyo-recipe .lyo-banner h3{font-size:18px;font-weight:800;line-height:1.25;margin:0;color:#fff}
+  .lyomix-page .lyo-recipe .lyo-body{padding:22px 24px}
+  .lyomix-page .lyo-recipe h4{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--lyo-brand);margin:0 0 8px}
+  .lyomix-page .lyo-recipe .lyo-ing{font-size:15px;color:#3c3530;margin:0 0 18px}
+  .lyomix-page .lyo-recipe .lyo-steps{font-size:15px;color:var(--lyo-muted);margin:0}
+  .lyomix-page .lyo-pill{display:inline-block;margin-top:16px;font-size:12.5px;font-weight:700;color:var(--lyo-brand);background:#fff0f5;border:1px solid #ffd9e6;padding:5px 12px;border-radius:999px}
+  .lyomix-page .lyo-hint{margin-top:28px;font-size:14px;color:var(--lyo-muted)}
+
+  /* ICE CREAM */
+  .lyomix-page .lyo-icecream{background:linear-gradient(135deg,#1d1530,#3a1f4d 55%,#5a2a55);color:#fff;border-radius:28px;padding:clamp(32px,5vw,60px);box-shadow:0 30px 60px rgba(40,20,50,.35);position:relative;overflow:hidden}
+  .lyomix-page .lyo-icecream::after{content:"🍨";position:absolute;right:-10px;bottom:-20px;font-size:200px;opacity:.08}
+  .lyomix-page .lyo-icecream .lyo-eyebrow{color:#ffb3d1}
+  .lyomix-page .lyo-icecream h2{font-size:clamp(26px,4vw,40px);line-height:1.15;letter-spacing:-.5px;margin:0 0 16px;position:relative;color:#fff}
+  .lyomix-page .lyo-icecream p.lyo-intro{color:#e8dcf2;font-size:17px;max-width:760px;position:relative;margin:0}
+  .lyomix-page .lyo-ic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:36px;position:relative}
+  .lyomix-page .lyo-ic-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:26px}
+  .lyomix-page .lyo-ic-card h3{font-size:18px;margin:0 0 14px;display:flex;align-items:center;gap:10px;color:#fff}
+  .lyomix-page .lyo-ic-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+  .lyomix-page .lyo-ic-card li{font-size:15px;color:#eadff5}
+  .lyomix-page .lyo-ic-card li b{color:#fff}
+  .lyomix-page .lyo-ic-note{margin-top:30px;background:rgba(255,255,255,.09);border-left:4px solid #ffb3d1;border-radius:12px;padding:20px 24px;font-size:15px;color:#f0e6f7;position:relative}
+
+  /* END CTA */
+  .lyomix-page .lyo-endcta{text-align:center}
+  .lyomix-page .lyo-endcta h2{font-size:clamp(26px,4vw,42px);letter-spacing:-.5px;margin:0 0 14px;color:var(--lyo-ink)}
+  .lyomix-page .lyo-endcta p{color:var(--lyo-muted);font-size:18px;max-width:600px;margin:0 auto 30px}
+  .lyomix-page .lyo-footer{border-top:1px solid var(--lyo-line);padding:34px 0;text-align:center;color:var(--lyo-muted);font-size:14px}
+
+  @media(max-width:640px){
+    .lyomix-page .lyo-section{padding:54px 0}
+    .lyomix-page .lyo-hero{padding:72px 0 56px}
+  }
+</style>
+
+<!-- HERO -->
+<div class="lyo-hero">
+  <div class="lyo-wrap">
+    <div class="lyo-badge">❄️ Freeze-Dry Teknolojisi · %100 Saf Meyve</div>
+    <h1>Doğanın en taze halini <span class="lyo-grad">çıtır çıtır</span> sofranıza taşıyoruz.</h1>
+    <p class="lyo-sub">LyoMix®, dondurarak kurutma (freeze-dry) teknolojisiyle hazırlanan, su katkısız ve şeker ilavesiz %100 meyvedir. İşte ürünlerimiz, kullanım alanları ve ilham veren tarifler.</p>
+    <div class="lyo-cta-row">
+      <a href="#lyo-urunler" class="lyo-btn lyo-btn-primary">Ürünleri Keşfet</a>
+      <a href="#lyo-tarifler" class="lyo-btn lyo-btn-ghost">Tariflere Göz At</a>
+    </div>
+    <div class="lyo-hero-emojis">🍓 🍊 🫐 🍏 🍇 🍌 🍈 🍍 🥭</div>
+  </div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="lyo-strip">
+  <div class="lyo-wrap">
+    <div class="lyo-item"><span class="lyo-ico">💧</span> %100 Susuz</div>
+    <div class="lyo-item"><span class="lyo-ico">🚫</span> Şeker İlavesiz</div>
+    <div class="lyo-item"><span class="lyo-ico">🌿</span> Katkısız</div>
+    <div class="lyo-item"><span class="lyo-ico">✨</span> Ultra Çıtır Doku</div>
+    <div class="lyo-item"><span class="lyo-ico">🥄</span> Yüksek Lif</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="lyo-section" id="lyo-urunler">
+  <div class="lyo-wrap">
+    <span class="lyo-eyebrow">Ürünlerimiz</span>
+    <h2 class="lyo-title">Her meyvenin kendine özel bir hikâyesi var</h2>
+    <p class="lyo-lead">9 farklı meyve, her biri için duygusal ve hikâye odaklı slogan alternatifleriyle.</p>
+    <div class="lyo-grid">
+
+      <div class="lyo-product" style="--lyo-accent:#e23b5a">
+        <div class="lyo-head"><span class="lyo-emoji">🍓</span><div><div class="lyo-name">Çilek</div><div class="lyo-en">Strawberry</div></div></div>
+        <ul>
+          <li>"Bulutlar kadar hafif, ilk günkü kadar taze; mevsimsiz bir çıtır çilek rüyası."</li>
+          <li>"Çocukluğunun o mis kokulu tarla çileği, şimdi en kıtır ve en saf haliyle paketinde."</li>
+          <li>"Tatlı krizlerine vicdan azabı çektirmeyen, doğanın en kırmızı ve en çıtır hediyesi."</li>
+        </ul>
+      </div>
+
+      <div class="lyo-product" style="--lyo-accent:#ff8a2b">
+        <div class="lyo-head"><span class="lyo-emoji">🍊</span><div><div class="lyo-name">Portakal</div><div class="lyo-en">Orange</div></div></div>
+        <ul>
+          <li>"Güneşin enerjisi ve C vitamininin en çıtır haliyle günün her anında zinde kal."</li>
+          <li>"Dilim dilim çıtırtı, yudum yudum narenciye ferahlığı: Akdeniz'den gelen saf enerji."</li>
+          <li>"Sıradan atıştırmalıkları unutun; ezber bozan, çıtır çıtır bir portakal deneyimi."</li>
+        </ul>
+      </div>
+
+      <div class="lyo-product" style="--lyo-accent:#4257d6">
+        <div class="lyo-head"><span class="lyo-emoji">🫐</span><div><div class="lyo-name">Mavi Yemiş / Yaban Mersini</div><div class="lyo-en">Blueberry</div></div></div>
+        <ul>
+          <li>"Doğanın en asil rengi, en saf antioksidanı: Küçük tanelerde gizli büyük mutluluk."</li>
+          <li>"Su yok, katkı yok; sadece ormanın kalbinden gelen taptaze bir çıtırtı var."</li>
+          <li>"Gurme damaklara özel, lüks ve sağlıklı atıştırmalığın en mor tonu."</li>
+        </ul>
+      </div>
+
+      <div class="lyo-product" style="--lyo-accent:#3fae5a">
+        <div class="lyo-head"><span class="lyo-emoji">🍏</span><div><div class="lyo-name">Elma</div><div class="lyo-en">Apple</div></div></div>
+        <ul>
+          <li>"Tatlı krizlerinin en hafif, en kıtır ve en diyet dostu akıllı çözümü."</li>
+          <li>"Yeşil elmanın o canlandırıcı, hafif mayhoş ekşiliği şimdi çıtır bir cips formunda."</li>
+          <li>"Suçluluk hissettirmeyen, günün her saatine yakışan masum bir lezzet kaçamağı."</li>
+        </ul>
+      </div>
+
+      <div class="lyo-product" style="--lyo-accent:#8e44c9">
+        <div class="lyo-head"><span class="lyo-emoji">🍇</span><div><div class="lyo-name">İncir</div><div class="lyo-en">Fig</div></div></div>
+        <ul>
+          <li>"Anadolu topraklarının en tatlı mirası, şimdi modern ve çıtır çıtır bir formda."</li>
+          <li>"Doğal ballı aroması ve benzersiz çıtırtısıyla çay saatlerinizin yeni gözdesi."</li>
+          <li>"Geleneksel lezzete modern dokunuş: Sindirim dostu, yüksek lifli en çıtır incir."</li>
+        </ul>
+      </div>
+
+      <div class="lyo-product" style="--lyo-accent:#f0b400">
+        <div class="lyo-head"><span class="lyo-emoji">🍌</span><div><div class="lyo-name">Muz</div><div class="lyo-en">Banana</div></div></div>
+        <ul>
+          <li>"Spor çantanızın, okul beslenmenizin ve gün içindeki modunuzun en çıtır enerji kaynağı."</li>
+          <li>"Muzun o bildiğiniz yumuşak dünyasını unutun; şimdi sizi şaşırtacak bir kıtırlık zamanı."</li>
+          <li>"Katkısız, şeker ilavesiz, çocukların bayılacağı en doğal muz pulları."</li>
+        </ul>
+      </div>
+
+      <div class="lyo-product" style="--lyo-accent:#69b85b">
+        <div class="lyo-head"><span class="lyo-emoji">🍈</span><div><div class="lyo-name">Kavun</div><div class="lyo-en">Melon</div></div></div>
+        <ul>
+          <li>"Yaz güneşinin kokusu ve yoğun kavun aroması, şimdi dört mevsim çıtır küplerde."</li>
+          <li>"Ağzınızda dağılan o yoğun tatlı aroma ile günün stresine çıtır bir mola verin."</li>
+          <li>"Ferahlatan yaz esintisi şimdi her an cebinizde: Şeker ilavesiz çıtır kavun lokmaları."</li>
+        </ul>
+      </div>
+
+      <div class="lyo-product" style="--lyo-accent:#e0a416">
+        <div class="lyo-head"><span class="lyo-emoji">🍍</span><div><div class="lyo-name">Ananas</div><div class="lyo-en">Pineapple</div></div></div>
+        <ul>
+          <li>"Tropikal adaların egzotik havası ve yüksek lif gücü, çıtır bir dilimle kapınızda."</li>
+          <li>"Aroması içinde saklı kalmış, her ısırıkta sizi tropikal bir yolculuğa çıkaran lezzet."</li>
+          <li>"Tazeleyici, canlandırıcı ve tamamen çıtır bir tropikal meyve şöleni."</li>
+        </ul>
+      </div>
+
+      <div class="lyo-product" style="--lyo-accent:#f3851f">
+        <div class="lyo-head"><span class="lyo-emoji">🥭</span><div><div class="lyo-name">Mango</div><div class="lyo-en">Mango</div></div></div>
+        <ul>
+          <li>"Bağışıklığına iyi bak, ruhunu egzotik bir mango çıtırtısıyla şımart."</li>
+          <li>"Uzak doğunun en tatlı esintisi, şimdi hiçbir katkı maddesi olmadan en saf haliyle."</li>
+          <li>"Her pakette taptaze bir macera: Gurme lezzet arayanların yeni egzotik bağımlılığı."</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- USAGE TIPS -->
+<div class="lyo-section lyo-tips-band">
+  <div class="lyo-wrap">
+    <span class="lyo-eyebrow">Kullanım Tavsiyeleri</span>
+    <h2 class="lyo-title">Günün her anına çıtır bir dokunuş</h2>
+    <p class="lyo-lead">Müşterilerimize ilham veren pratik kullanım önerileri.</p>
+    <div class="lyo-tips">
+      <div class="lyo-tip">
+        <div class="lyo-tic">🎒</div>
+        <h3>Çocuk Beslenme Çantaları</h3>
+        <p>Çocuklarınıza cips veya jelibon yerine okulda güvenle çıtırdatabilecekleri, ellerini boyamayan ve %100 meyveden oluşan bu eğlenceli paketleri koyun.</p>
+      </div>
+      <div class="lyo-tip">
+        <div class="lyo-tic">☕</div>
+        <h3>Ofis ve Masabaşı Kurtarıcısı</h3>
+        <p>Çalışırken gelen tatlı krizlerinde kahvenizin yanına ekleyin. Çıtırtısı motivasyonunuzu artırırken, kalorisi formunuzu korur.</p>
+      </div>
+      <div class="lyo-tip">
+        <div class="lyo-tic">🏃</div>
+        <h3>Spor Öncesi / Sonrası Yakıtı</h3>
+        <p>Spordan 20 dakika önce muz veya mango paketini açın, vücudunuza ihtiyacı olan temiz ve doğal karbonhidrat enerjisini yükleyin.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RECIPES -->
+<div class="lyo-section" id="lyo-tarifler">
+  <div class="lyo-wrap">
+    <span class="lyo-eyebrow">Tarifler</span>
+    <h2 class="lyo-title">Rekor kıracak çıtır tarifler</h2>
+    <p class="lyo-lead">İçeceklerden kahvaltılıklara, pastacılıktan pratik tatlılara LyoMix® ile lezzet rehberiniz.</p>
+    <div class="lyo-recipes">
+
+      <div class="lyo-recipe">
+        <div class="lyo-banner" style="--lyo-c1:#e23b5a;--lyo-c2:#ff7aa0"><span class="lyo-e">🍓</span><h3>Çilekli Pembe Detoks Smoothiesi</h3></div>
+        <div class="lyo-body">
+          <h4>Malzemeler</h4>
+          <p class="lyo-ing">1 su bardağı badem sütü · 1 adet muz · 4–5 adet LyoMix Çilek</p>
+          <h4>Yapılışı</h4>
+          <p class="lyo-steps">Tüm malzemeleri blenderdan geçirin. Üzerini süslemek için birkaç adet LyoMix Çileği elinizle ufalayarak çıtır toz haline getirin ve bardağın üstüne serpin.</p>
+          <span class="lyo-pill">İçeceklerinizde</span>
+        </div>
+      </div>
+
+      <div class="lyo-recipe">
+        <div class="lyo-banner" style="--lyo-c1:#3fae5a;--lyo-c2:#4257d6"><span class="lyo-e">🍏</span><h3>Fit &amp; Kıtır Yoğurt Kasesi</h3></div>
+        <div class="lyo-body">
+          <h4>Malzemeler</h4>
+          <p class="lyo-ing">3 yemek kaşığı süzme yoğurt · 1 yemek kaşığı yulaf ezmesi · 1 çay kaşığı bal · avuç içi kadar LyoMix Elma ve LyoMix Mavi Yemiş</p>
+          <h4>Yapılışı</h4>
+          <p class="lyo-steps">Yoğurt ve balı karıştırın, yulafı ekleyin. En üste elma dilimlerini ve mavi yemiş tanelerini dizerek kahvaltınızı bir çıtır festivaline dönüştürün.</p>
+          <span class="lyo-pill">Kahvaltılıklarınızda</span>
+        </div>
+      </div>
+
+      <div class="lyo-recipe">
+        <div class="lyo-banner" style="--lyo-c1:#ff8a2b;--lyo-c2:#3a2418"><span class="lyo-e">🍊</span><h3>Çikolata Kaplı Gurme Narenciye</h3></div>
+        <div class="lyo-body">
+          <h4>Malzemeler</h4>
+          <p class="lyo-ing">1 paket LyoMix Portakal · %70 kakaolu bitter çikolata</p>
+          <h4>Yapılışı</h4>
+          <p class="lyo-steps">Bitter çikolatayı benmari usulü eritin. Çıtır portakal dilimlerini yarıya kadar çikolataya batırıp yağlı kağıt üzerinde donmaya bırakın. Kahve yanına premium ikramlığınız hazır!</p>
+          <span class="lyo-pill">Pastacılıkta &amp; Tariflerinizde</span>
+        </div>
+      </div>
+
+      <div class="lyo-recipe">
+        <div class="lyo-banner" style="--lyo-c1:#8e44c9;--lyo-c2:#c77dff"><span class="lyo-e">🍇</span><h3>Sindirim Dostu Çıtır Yulaf Lapası</h3></div>
+        <div class="lyo-body">
+          <h4>Malzemeler</h4>
+          <p class="lyo-ing">1 çay bardağı süt · 3 yemek kaşığı yulaf · LyoMix İncir</p>
+          <h4>Yapılışı</h4>
+          <p class="lyo-steps">Süt ve yulafı ocakta lapa kıvamına gelene kadar pişirin. Kaseye aldıktan sonra üzerine LyoMix İncirleri bütün olarak dizin. İncirin içindeki yüksek lif ve doğal ballı tat, sıcak yulafla birleşince mükemmel bir sindirim aktivatörüne dönüşür.</p>
+          <span class="lyo-pill">Porridge</span>
+        </div>
+      </div>
+
+      <div class="lyo-recipe">
+        <div class="lyo-banner" style="--lyo-c1:#e0a416;--lyo-c2:#69b85b"><span class="lyo-e">🍍</span><h3>Tropikal Chia Puding</h3></div>
+        <div class="lyo-body">
+          <h4>Malzemeler</h4>
+          <p class="lyo-ing">1 su bardağı hindistan cevizi sütü · 2 yemek kaşığı chia tohumu · LyoMix Ananas ve LyoMix Kavun küpleri</p>
+          <h4>Yapılışı</h4>
+          <p class="lyo-steps">Süt ve chia tohumunu karıştırıp sabaha kadar buzdolabında jelleşmeye bırakın. Sabah pudingin içine çıtır ananas ve kavun parçalarını ekleyerek güne tropikal bir adada uyanmış gibi başlayın.</p>
+          <span class="lyo-pill">Geceden Hazırlanan Pratik Tarif</span>
+        </div>
+      </div>
+
+    </div>
+    <p class="lyo-hint">💡 <strong>İpucu:</strong> 1 bardak smoothie için <strong>10–15 g (1 paket)</strong> freeze-dry meyve idealdir. Freeze-dry meyve çok yoğun olduğundan az miktar yeterlidir.</p>
+  </div>
+</div>
+
+<!-- ICE CREAM -->
+<div class="lyo-section">
+  <div class="lyo-wrap">
+    <div class="lyo-icecream">
+      <span class="lyo-eyebrow">Yeni Trend</span>
+      <h2>LyoMix® ile Evde Kusursuz Dondurma Sanatı</h2>
+      <p class="lyo-intro">Yeni nesil ev tipi dondurma makineleriniz (Ninja Creami ve benzerleri) ve fit dondurma tarifleriniz için aradığınız gizli ham madde hazır! Taze meyve, içindeki su nedeniyle dondurmanızı buzlandırır ve kremsi dokusunu bozar. %100 susuz LyoMix®, ev yapımı dondurmalarınızı birer İtalyan gelatosuna dönüştürür.</p>
+      <div class="lyo-ic-grid">
+        <div class="lyo-ic-card">
+          <h3>🔮 Yapım Aşamasında</h3>
+          <ul>
+            <li><b>Buzlanmayan Meyve Mucizesi:</b> Dondurma bazınızı (süt, yulaf sütü veya protein shake) hazırlarken dilediğiniz LyoMix® meyvesini ekleyip karıştırın. Sıfır nem sayesinde kristallenme ve buzlanma olmaz; pürüzsüz, ipeksi bir kıvam elde edersiniz.</li>
+            <li><b>Doğal Renk ve Mix-In Çılgınlığı:</b> "Mix-In" aşamasında LyoMix® Çilek, Muz veya Kavun küpleri ekleyin. Her kaşıkta ağzınızda patlayan yoğun meyve aromaları yaratın.</li>
+          </ul>
+        </div>
+        <div class="lyo-ic-card">
+          <h3>🎨 Süsleme Aşamasında</h3>
+          <ul>
+            <li><b>Gurme Meyve Tozları:</b> Dondurmanızı kaseye aldıktan sonra LyoMix® Mavi Yemiş veya Mango dilimlerini elinizle ufalayarak üzerine serpiştirin. %100 doğal, rengarenk ve göz alıcı gurme sunumlar hazırlayın.</li>
+            <li><b>Dokuların Kusursuz Uyumu:</b> Yumuşacık ev yapımı dondurmanız ile LyoMix®'in ultra çıtır yapısı birleştiğinde, her kaşıkta bağımlılık yaratan mükemmel bir tezatlık yakalayın.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="lyo-ic-note">🍨 <strong>Ninja Creami ve ev yapımı dondurmalarınızın yeni gizli malzemesi!</strong> — Susuz yapısı sayesinde LyoMix®, dondurmaya muazzam bir kıvam ve yoğun lezzet katar; asla buzlandırmaz.</div>
+    </div>
+  </div>
+</div>
+
+<!-- END CTA -->
+<div class="lyo-section lyo-endcta">
+  <div class="lyo-wrap">
+    <h2>Doğanın en saf çıtırtısını deneyimleyin</h2>
+    <p>Şeker ilavesiz, katkısız, %100 meyve. Mutfağınıza ve atıştırmalıklarınıza LyoMix® dokunuşunu ekleyin.</p>
+    <a href="#lyo-urunler" class="lyo-btn lyo-btn-primary">Ürünleri İncele</a>
+  </div>
+</div>
+
+<div class="lyo-footer">© 2026 LyoMix® · Freeze-Dry Teknolojisi ile %100 Saf Meyve</div>
+
+</div>
+<!-- ================= LyoMix® bloğu sonu ================= -->
