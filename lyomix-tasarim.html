@@ -58,6 +58,14 @@
   .btn-ghost:hover{transform:translateY(-2px)}
   .hero-media .lyo-ph{aspect-ratio:9/10;min-height:380px;box-shadow:var(--shadow)}
   .hero-emojis{font-size:26px;margin-top:26px;letter-spacing:5px;opacity:.9}
+  /* HERO kullanım alanları (5 üst + 4 alt) */
+  .use-areas{margin-top:22px}
+  .use-areas .ua-cap{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .use-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+  .ua{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:14px;font-weight:600;color:#3c3530;box-shadow:0 4px 12px rgba(60,40,20,.06);transition:transform .15s ease,box-shadow .15s ease;cursor:default}
+  .ua:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(224,69,123,.16);border-color:#ffd9e6}
+  .ua .em{font-size:17px}
+  @media(max-width:640px){.ua{font-size:13px;padding:7px 12px}}
 
   /* TRUST STRIP */
   .strip{background:#fff;border-bottom:1px solid var(--line)}
@@ -148,6 +156,23 @@
         <a href="#tarifler" class="btn btn-ghost">Tariflere Göz At</a>
       </div>
       <div class="hero-emojis">🍓 🍊 🫐 🍏 🍇 🍌 🍈 🍍 🥭</div>
+
+      <div class="use-areas">
+        <div class="ua-cap">Kullanım Alanları</div>
+        <div class="use-row">
+          <span class="ua"><span class="em">🥤</span> İçecek &amp; Smoothie</span>
+          <span class="ua"><span class="em">🥣</span> Kahvaltılıklar</span>
+          <span class="ua"><span class="em">🎂</span> Pastacılık</span>
+          <span class="ua"><span class="em">🍲</span> Porridge</span>
+          <span class="ua"><span class="em">🎒</span> Çocuk Beslenmesi</span>
+        </div>
+        <div class="use-row">
+          <span class="ua"><span class="em">☕</span> Ofis Atıştırması</span>
+          <span class="ua"><span class="em">🏃</span> Spor Beslenmesi</span>
+          <span class="ua"><span class="em">🍨</span> Ev Yapımı Dondurma</span>
+          <span class="ua"><span class="em">🍶</span> Yoğurt &amp; Granola</span>
+        </div>
+      </div>
     </div>
     <div class="hero-media">
       <!-- HERO GÖRSELİ: aşağıdaki .lyo-ph yerine <img src="HERO.png" alt="LyoMix"> koyacağız -->
