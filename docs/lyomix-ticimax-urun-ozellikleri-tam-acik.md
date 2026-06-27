@@ -32,7 +32,83 @@ Açıklama içeriği **`.urunTabAlt`** kutusunun içinde duruyor:
 İçten kaydırmalı kutu **`.urunTabAlt`** ya da onun bir üst sarmalayıcısı.
 Önceki CSS denemesinde bu sınıf eksikti; eklenince çözülür.
 
-## Çözüm 1 — Özel CSS (öncelikli)
+## ÖNERİLEN — Tema geneli (tüm ürünlerde otomatik)
+
+Kodu **temanın genel CSS ve JS dosyalarına** ekleyin; sitedeki **bütün ürün
+detay sayfalarında** tek seferde çalışır. Ürün ürün uğraşmak gerekmez.
+
+**Konum:** Ticimax paneli → **Tema & Tasarım → (aktif tema) → CSS Düzenle**
+ve **JavaScript Düzenle**. Mevcut kodu silmeyin; aşağıdakileri **dosyaların en
+sonuna** ekleyin.
+
+> Önemli: Tema dosyalarına `<style>` / `<script>` etiketi **konmaz** — sadece
+> kuralların/kodun kendisi yazılır.
+
+### CSS dosyasının sonuna
+
+```css
+/* === LyoMix: ürün açıklamasını tam açık göster (kaydırmasız) === */
+.urunTabAlt, .urunTabAlt > div,
+.urunTab, .urunTab .tab-content, .urunTab .tab-pane,
+.urunDetayPanel, .urunOzellik, .urunOzellikTab,
+.urunBilgi, .urunBilgiIcerik, .urunBilgiTab,
+.Aciklama, .UrunAciklama, .urun-aciklama,
+.proDetailArea, .tab-content, .tab-pane,
+[id*="Aciklama"], [class*="Aciklama"],
+[id*="ciklama"], [class*="ciklama"] {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+.urunTabAlt *, .urunTab *, .urunDetayPanel *, .urunOzellik *,
+.urunOzellikTab *, .urunBilgiIcerik *, .Aciklama *,
+.UrunAciklama *, .proDetailArea * {
+  max-height: none !important;
+  overflow: visible !important;
+}
+```
+
+### JS dosyasının sonuna (CSS yetmezse devreye girer)
+
+```javascript
+/* === LyoMix: kaydırmalı açıklama kutusunu otomatik aç === */
+(function () {
+  function lyoAcAyari() {
+    var c = document.querySelector('.urunTabAlt');
+    if (!c) return;
+    var el = c;
+    while (el && el !== document.body) {
+      var s = getComputedStyle(el);
+      if (/(auto|scroll|hidden)/.test(s.overflowY) || parseInt(s.maxHeight) > 0) {
+        el.style.setProperty('max-height', 'none', 'important');
+        el.style.setProperty('height', 'auto', 'important');
+        el.style.setProperty('overflow', 'visible', 'important');
+      }
+      el = el.parentElement;
+    }
+  }
+  document.addEventListener('DOMContentLoaded', lyoAcAyari);
+  setTimeout(lyoAcAyari, 600);
+  setTimeout(lyoAcAyari, 1500);
+})();
+```
+
+Kaydedip ürün sayfasında **Ctrl+F5** (önbellek temizleyerek yenile) yapın.
+Tek tük bir üründe hâlâ kayma varsa, o sayfada F12 → İncele ile kaydırma çubuğu
+olan div'in sınıfını yukarıdaki listeye ekleyin.
+
+> Not: Daha önce bazı ürünlerin açıklamasının **içine** `<style>`/`<script>`
+> yapıştırdıysanız artık silebilirsiniz — tema global olarak hallediyor.
+
+---
+
+## Alternatif: Tek ürün / Özel CSS alanı
+
+Aşağıdaki yöntemler tek bir ürün ya da panelin Özel CSS/JS alanı içindir;
+tema-geneli çözüm varken gerekmez, referans olarak bırakılmıştır.
+
+### Özel CSS
 
 Tema & Tasarım → Özel CSS alanına yapıştırın:
 
