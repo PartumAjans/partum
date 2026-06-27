@@ -98,6 +98,66 @@ Kaydedip ürün sayfasında **Ctrl+F5** (önbellek temizleyerek yenile) yapın.
 Tek tük bir üründe hâlâ kayma varsa, o sayfada F12 → İncele ile kaydırma çubuğu
 olan div'in sınıfını yukarıdaki listeye ekleyin.
 
+### Mobil (önemli)
+
+Tema, mobilde (`< 768px`) açıklama sekmelerini **akordeon**a çeviriyor
+(`.urunOzellikTab` / `.urunDetayPanel`, tıklayınca açılır). Bu yüzden mobilde
+iki ek gerekir:
+
+**CSS dosyasının sonuna mobil kuralı:**
+
+```css
+/* === LyoMix mobil: açıklama akordeonunu tam açık göster === */
+@media (max-width: 768px) {
+  .urunTabAlt, .urunTabAlt > div,
+  .urunOzellikTab, .urunOzellikTab .urunTab, .urunOzellikTab .urunTab li,
+  .urunDetayPanel, .urunTab, .urunBilgiIcerik,
+  .Aciklama, .UrunAciklama, .urun-aciklama,
+  [class*="ciklama"], [id*="ciklama"],
+  [class*="Aciklama"], [id*="Aciklama"] {
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+}
+```
+
+**JS dosyasındaki LyoMix kodunu bununla değiştirin** (tıklama sonrası da
+çalışır; akordeon açılınca devreye girer):
+
+```javascript
+/* === LyoMix: açıklama kutusunu otomatik aç (masaüstü + mobil) === */
+(function () {
+  function lyoAc() {
+    var hedefler = document.querySelectorAll(
+      '.urunTabAlt, .urunDetayPanel, .urunOzellikTab, .urunBilgiIcerik,' +
+      '[class*="ciklama"], [class*="Aciklama"]'
+    );
+    hedefler.forEach(function (c) {
+      var el = c;
+      while (el && el !== document.body) {
+        var s = getComputedStyle(el);
+        if (/(auto|scroll|hidden)/.test(s.overflowY) || parseInt(s.maxHeight) > 0) {
+          el.style.setProperty('max-height', 'none', 'important');
+          el.style.setProperty('height', 'auto', 'important');
+          el.style.setProperty('overflow', 'visible', 'important');
+        }
+        el = el.parentElement;
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', lyoAc);
+  document.addEventListener('click', function () { setTimeout(lyoAc, 350); });
+  setTimeout(lyoAc, 600);
+  setTimeout(lyoAc, 1500);
+})();
+```
+
+Mobil testte gerçek cihazda sayfayı yenileyin (önbellek inatçıysa sekmeyi
+kapatıp açın). Hâlâ kayma kalırsa `chrome://inspect` uzaktan inceleme ile
+kaydıran div'in sınıfını yukarıdaki listelere ekleyin.
+
 > Not: Daha önce bazı ürünlerin açıklamasının **içine** `<style>`/`<script>`
 > yapıştırdıysanız artık silebilirsiniz — tema global olarak hallediyor.
 
