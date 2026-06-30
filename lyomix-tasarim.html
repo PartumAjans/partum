@@ -81,6 +81,8 @@
   .product .media{position:relative;background:var(--accent-soft,#faf3ec)}
   .product .media .lyo-ph{aspect-ratio:1/1;border:none;border-bottom:1px solid var(--line);border-radius:0;background:
       repeating-linear-gradient(45deg,#fbf3ea,#fbf3ea 12px,#f6ece0 12px,#f6ece0 24px)}
+  /* Gerçek ürün görseli — images/ klasöründeki dosya yüklenince placeholder'ı kapatır */
+  .product .media .prod-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;background:#fff;border-bottom:1px solid var(--line)}
   .product .media .tag{position:absolute;top:14px;left:14px;z-index:2;display:flex;align-items:center;gap:7px;background:#fff;border-radius:999px;padding:6px 13px;font-weight:800;font-size:14px;box-shadow:var(--shadow)}
   .product .media .tag .em{font-size:18px}
   .product .body{padding:22px 24px}
@@ -210,7 +212,8 @@
 
       <article class="product" style="--accent:#e23b5a;--accent-soft:#fdeef1">
         <div class="media"><span class="tag"><span class="em">🍓</span> Çilek</span>
-          <div class="lyo-ph" data-slot="urun-cilek"><span class="ph-ico">📦</span><span class="ph-label">ÇİLEK PAKET FOTO</span><span class="ph-size">600 × 600 px · PNG</span></div>
+          <img class="prod-img" src="images/cilek.png" alt="LyoMix Çilek paketi" onerror="this.style.display='none'">
+          <div class="lyo-ph" data-slot="urun-cilek"><span class="ph-ico">📦</span><span class="ph-label">ÇİLEK PAKET FOTO</span><span class="ph-size">images/cilek.png</span></div>
         </div>
         <div class="body"><div class="en">Strawberry</div>
           <ul>
@@ -236,7 +239,8 @@
 
       <article class="product" style="--accent:#4257d6;--accent-soft:#eaedfb">
         <div class="media"><span class="tag"><span class="em">🫐</span> Mavi Yemiş</span>
-          <div class="lyo-ph" data-slot="urun-maviyemis"><span class="ph-ico">📦</span><span class="ph-label">MAVİ YEMİŞ PAKET FOTO</span><span class="ph-size">600 × 600 px · PNG</span></div>
+          <img class="prod-img" src="images/mavi-yemis.png" alt="LyoMix Mavi Yemiş paketi" onerror="this.style.display='none'">
+          <div class="lyo-ph" data-slot="urun-maviyemis"><span class="ph-ico">📦</span><span class="ph-label">MAVİ YEMİŞ PAKET FOTO</span><span class="ph-size">images/mavi-yemis.png</span></div>
         </div>
         <div class="body"><div class="en">Blueberry</div>
           <ul>
@@ -249,7 +253,8 @@
 
       <article class="product" style="--accent:#3fae5a;--accent-soft:#e9f6ec">
         <div class="media"><span class="tag"><span class="em">🍏</span> Elma</span>
-          <div class="lyo-ph" data-slot="urun-elma"><span class="ph-ico">📦</span><span class="ph-label">ELMA PAKET FOTO</span><span class="ph-size">600 × 600 px · PNG</span></div>
+          <img class="prod-img" src="images/elma.png" alt="LyoMix Elma paketi" onerror="this.style.display='none'">
+          <div class="lyo-ph" data-slot="urun-elma"><span class="ph-ico">📦</span><span class="ph-label">ELMA PAKET FOTO</span><span class="ph-size">images/elma.png</span></div>
         </div>
         <div class="body"><div class="en">Apple</div>
           <ul>
@@ -275,7 +280,8 @@
 
       <article class="product" style="--accent:#f0b400;--accent-soft:#fff7e0">
         <div class="media"><span class="tag"><span class="em">🍌</span> Muz</span>
-          <div class="lyo-ph" data-slot="urun-muz"><span class="ph-ico">📦</span><span class="ph-label">MUZ PAKET FOTO</span><span class="ph-size">600 × 600 px · PNG</span></div>
+          <img class="prod-img" src="images/muz.png" alt="LyoMix Muz paketi" onerror="this.style.display='none'">
+          <div class="lyo-ph" data-slot="urun-muz"><span class="ph-ico">📦</span><span class="ph-label">MUZ PAKET FOTO</span><span class="ph-size">images/muz.png</span></div>
         </div>
         <div class="body"><div class="en">Banana</div>
           <ul>
@@ -301,7 +307,8 @@
 
       <article class="product" style="--accent:#e0a416;--accent-soft:#fdf4dd">
         <div class="media"><span class="tag"><span class="em">🍍</span> Ananas</span>
-          <div class="lyo-ph" data-slot="urun-ananas"><span class="ph-ico">📦</span><span class="ph-label">ANANAS PAKET FOTO</span><span class="ph-size">600 × 600 px · PNG</span></div>
+          <img class="prod-img" src="images/ananas.png" alt="LyoMix Ananas paketi" onerror="this.style.display='none'">
+          <div class="lyo-ph" data-slot="urun-ananas"><span class="ph-ico">📦</span><span class="ph-label">ANANAS PAKET FOTO</span><span class="ph-size">images/ananas.png</span></div>
         </div>
         <div class="body"><div class="en">Pineapple</div>
           <ul>

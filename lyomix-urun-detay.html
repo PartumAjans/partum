@@ -34,6 +34,7 @@
   .gallery .main{position:relative;background:linear-gradient(160deg,var(--accent-soft),#fff);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
   .gallery .main .lyo-ph{aspect-ratio:1/1;border:none;border-radius:0;background:
       repeating-linear-gradient(45deg,#f4f1fb,#f4f1fb 12px,#eceafa 12px,#eceafa 24px)}
+  .gallery .main .prod-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;background:#fff}
   .lyo-ph{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;color:#9a8f84;border:2px dashed #d6d3ee;border-radius:16px;overflow:hidden}
   .lyo-ph .ph-ico{font-size:38px}
   .lyo-ph .ph-label{font-size:13px;font-weight:700;color:#7d7268}
@@ -91,7 +92,8 @@
     <!-- GALERİ -->
     <div class="gallery">
       <div class="main">
-        <div class="lyo-ph" data-slot="urun-ana"><span class="ph-ico">🫐</span><span class="ph-label">ANA ÜRÜN GÖRSELİ</span><span class="ph-size">800 × 800 px · PNG (şeffaf)</span></div>
+        <img class="prod-img" src="images/mavi-yemis.png" alt="LyoMix Mavi Yemiş paketi" onerror="this.style.display='none'">
+        <div class="lyo-ph" data-slot="urun-ana"><span class="ph-ico">🫐</span><span class="ph-label">ANA ÜRÜN GÖRSELİ</span><span class="ph-size">images/mavi-yemis.png</span></div>
       </div>
       <div class="thumbs">
         <div class="lyo-ph" data-slot="g1"><span class="ph-ico">📷</span><span class="ph-size">200×200</span></div>
