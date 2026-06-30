@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LyoMix® Yaban Mersini — Ürün Detay</title>
+<meta name="description" content="LyoMix® Dondurularak Kurutulmuş Yaban Mersini (Mavi Yemiş) — %100 saf meyve, freeze-dry, şeker ilavesiz, çıtır doku." />
+<!--
+  ÜRÜN DETAY ŞABLONU — Yaban Mersini örnek alınmıştır.
+  Diğer meyveler için: --accent renklerini, emoji'yi, başlık ve metinleri değiştir.
+  GÖRSEL: .lyo-ph kutularını <img src="..."> ile değiştir.
+    - Ana ürün görseli: 800 x 800 px (kare), PNG şeffaf zemin
+    - Küçük galeri görselleri: 200 x 200 px, PNG
+-->
+<style>
+  :root{
+    --bg:#fffdf9;--ink:#2a2320;--muted:#6b625b;--line:#efe7dc;--card:#fff;
+    --brand:#e0457b;--brand-2:#ff7a3d;
+    --accent:#4257d6;--accent-2:#7c8cf0;--accent-soft:#eaedfb; /* Yaban mersini */
+    --shadow:0 10px 30px rgba(60,40,20,.08);--radius:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Segoe UI",Roboto,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+
+  /* breadcrumb */
+  .crumb{padding:22px 0 4px;font-size:13.5px;color:var(--muted)}
+  .crumb a{color:var(--muted);text-decoration:none}
+  .crumb a:hover{color:var(--accent)}
+  .crumb span{margin:0 8px;opacity:.5}
+
+  /* ÜST: galeri + bilgi */
+  .top{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:24px 0 64px;align-items:start}
+  .gallery .main{position:relative;background:linear-gradient(160deg,var(--accent-soft),#fff);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+  .gallery .main .lyo-ph{aspect-ratio:1/1;border:none;border-radius:0;background:
+      repeating-linear-gradient(45deg,#f4f1fb,#f4f1fb 12px,#eceafa 12px,#eceafa 24px)}
+  .lyo-ph{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;color:#9a8f84;border:2px dashed #d6d3ee;border-radius:16px;overflow:hidden}
+  .lyo-ph .ph-ico{font-size:38px}
+  .lyo-ph .ph-label{font-size:13px;font-weight:700;color:#7d7268}
+  .lyo-ph .ph-size{font-size:11px;font-weight:600;color:#aa9c8e;background:#fff;border:1px solid #ece0d2;padding:3px 9px;border-radius:999px}
+  .lyo-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+  .thumbs .lyo-ph{aspect-ratio:1/1;background:#f7f5fc}
+  .thumbs .ph-ico{font-size:20px}
+
+  .info .em-badge{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:700;letter-spacing:.4px}
+  .info h1{font-size:clamp(26px,3.6vw,38px);line-height:1.15;letter-spacing:-.6px;font-weight:800;margin:16px 0 12px}
+  .info .tagline{font-size:18px;color:var(--muted);font-style:italic;border-left:4px solid var(--accent);padding-left:16px;margin-bottom:22px}
+  .info .lead{font-size:16px;color:#3c3530;margin-bottom:16px}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+  .badge{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:600;box-shadow:0 4px 12px rgba(60,40,20,.05)}
+  .badge .b-ic{font-size:16px}
+  .buy{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+  .btn{display:inline-block;padding:14px 28px;border-radius:999px;font-weight:700;text-decoration:none;font-size:15px;border:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+  .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 8px 22px rgba(66,87,214,.32)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{transform:translateY(-2px)}
+
+  /* ALT: detay bölümleri */
+  .details{padding:8px 0 80px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px 32px;margin-bottom:24px}
+  .panel h2{font-size:21px;letter-spacing:-.3px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .panel h2 .h-dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+  .panel p{color:#3c3530;font-size:15.5px;margin-bottom:12px}
+  .feat{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .feat li{position:relative;padding-left:30px;font-size:15.5px;color:#3c3530}
+  .feat li::before{content:"✓";position:absolute;left:0;top:0;width:21px;height:21px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .meta-card{background:linear-gradient(165deg,var(--accent-soft),#fff);border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px;margin-bottom:24px}
+  .meta-card h3{font-size:16px;display:flex;align-items:center;gap:9px;margin-bottom:8px}
+  .meta-card p{font-size:14.5px;color:#3c3530}
+  .meta-card .ico{font-size:20px}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-size:14px}
+
+  @media(max-width:860px){
+    .top{grid-template-columns:1fr;gap:28px}
+    .details{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="crumb"><a href="#">Anasayfa</a><span>›</span><a href="#">Ürünler</a><span>›</span>Yaban Mersini (Mavi Yemiş)</nav>
+</div>
+
+<!-- ÜST -->
+<div class="wrap">
+  <div class="top">
+    <!-- GALERİ -->
+    <div class="gallery">
+      <div class="main">
+        <div class="lyo-ph" data-slot="urun-ana"><span class="ph-ico">🫐</span><span class="ph-label">ANA ÜRÜN GÖRSELİ</span><span class="ph-size">800 × 800 px · PNG (şeffaf)</span></div>
+      </div>
+      <div class="thumbs">
+        <div class="lyo-ph" data-slot="g1"><span class="ph-ico">📷</span><span class="ph-size">200×200</span></div>
+        <div class="lyo-ph" data-slot="g2"><span class="ph-ico">📷</span><span class="ph-size">200×200</span></div>
+        <div class="lyo-ph" data-slot="g3"><span class="ph-ico">📷</span><span class="ph-size">200×200</span></div>
+        <div class="lyo-ph" data-slot="g4"><span class="ph-ico">📷</span><span class="ph-size">200×200</span></div>
+      </div>
+    </div>
+
+    <!-- BİLGİ -->
+    <div class="info">
+      <span class="em-badge">🫐 Freeze-Dry · %100 Saf Meyve</span>
+      <h1>LyoMix® Dondurularak Kurutulmuş Yaban Mersini (Mavi Yemiş)</h1>
+      <p class="tagline">Doğal aroması, hafif ekşimsi tadı ve eşsiz lezzetiyle yaban mersininin en çıtır hali şimdi LyoMix®'te.</p>
+      <p class="lead">LyoMix® Dondurularak Kurutulmuş Yaban Mersini (Mavi Yemiş), ileri teknoloji freeze-dry (dondurarak kurutma) yöntemiyle üretilir. Bu özel işlem sayesinde meyvenin doğal aroması, canlı rengi ve kendine özgü lezzeti korunurken hafif ve çıtır bir doku kazanır. İlave şeker, katkı maddesi veya koruyucu içermez.</p>
+      <p class="lead">Günün her anında sağlıklı bir atıştırmalık olarak tüketebilir; yoğurt, granola, müsli ve smoothie tariflerinize ekleyebilir, tatlı ve pastalarınıza doğal bir lezzet katabilirsiniz.</p>
+
+      <div class="badges">
+        <span class="badge"><span class="b-ic">🫐</span> %100 Gerçek Meyve</span>
+        <span class="badge"><span class="b-ic">❄️</span> Freeze-Dry</span>
+        <span class="badge"><span class="b-ic">🚫</span> Şeker İlavesiz</span>
+        <span class="badge"><span class="b-ic">🌿</span> Katkısız</span>
+        <span class="badge"><span class="b-ic">✨</span> Çıtır Doku</span>
+      </div>
+
+      <div class="buy">
+        <a href="#" class="btn btn-primary">Sepete Ekle</a>
+        <a href="#" class="btn btn-ghost">Tüm Ürünler</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ALT DETAYLAR -->
+<div class="wrap">
+  <div class="details">
+    <!-- sol -->
+    <div>
+      <div class="panel">
+        <h2><span class="h-dot"></span>Ürün Açıklaması</h2>
+        <p>LyoMix® Dondurularak Kurutulmuş Yaban Mersini (Mavi Yemiş), ileri teknoloji freeze-dry yöntemiyle üretilir. Bu özel işlem sayesinde meyvenin doğal aroması, canlı rengi ve kendine özgü lezzeti korunurken hafif ve çıtır bir doku kazanır. İlave şeker, katkı maddesi veya koruyucu içermez.</p>
+        <p>Günün her anında sağlıklı bir atıştırmalık olarak tüketebilir, yoğurt, granola, müsli ve smoothie tariflerinize ekleyebilir, tatlı ve pastalarınıza doğal bir lezzet katabilirsiniz.</p>
+      </div>
+
+      <div class="panel">
+        <h2><span class="h-dot"></span>Öne Çıkan Özellikler</h2>
+        <ul class="feat">
+          <li>%100 gerçek yaban mersini (mavi yemiş)</li>
+          <li>Freeze-Dry (Dondurarak Kurutma) teknolojisi</li>
+          <li>İlave şeker içermez</li>
+          <li>Koruyucu ve katkı maddesi içermez</li>
+          <li>Doğal aroma, renk ve lezzetini korur</li>
+          <li>Hafif ve çıtır doku</li>
+          <li>Atıştırmalık ve tarifler için ideal</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- sağ -->
+    <div>
+      <div class="meta-card">
+        <h3><span class="ico">📋</span> İçindekiler</h3>
+        <p>%100 Dondurularak Kurutulmuş Yaban Mersini (Mavi Yemiş)</p>
+      </div>
+      <div class="meta-card">
+        <h3><span class="ico">📦</span> Saklama Koşulları</h3>
+        <p>Serin, kuru ve güneş görmeyen bir ortamda, ambalajı kapalı şekilde muhafaza ediniz. Açıldıktan sonra paketin ağzını sıkıca kapatarak tazeliğini koruyabilirsiniz.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="wrap">© 2026 LyoMix® · Freeze-Dry Teknolojisi ile %100 Saf Meyve</div></footer>
+
+</body>
+</html>
