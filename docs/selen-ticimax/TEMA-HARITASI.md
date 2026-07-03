@@ -103,11 +103,16 @@ Panelden bir **Özel Alan (`#divOzelAlan1`)** HTML kutusuna rozet HTML'i yapış
 Tema bunu otomatik `.proDetailArea`'ya (fiyat altı) koyar. JS'i bozma riski = sıfır.
 Konum fiyatın hemen altı olur (buton arası değil) — çoğu durumda yeterli.
 
-### Yol B: Ayrı `<script>` bloğu (Head/Body özel kod)
-Butona bitişik konum isteniyorsa. **Ana tema JS'ine değil**, ayrı bloğa ekle.
-`.basketBtn` gerçek seçici olduğu için metinden yakalamaya gerek yok. Bloklar
-asenkron geldiğinden kısa aralıklı **retry** ile beklenir. Kod:
-`kapida-odeme-rozet.html` dosyasında (emoji yok, düz tırnak, try/catch, retry).
+### Yol B: Script Yönetimi → Ürün Detay (KULLANILDI, çalışıyor)
+`kapida-odeme-rozet.html` içeriği **Script Yönetimi → satır 5 (Ürün Detay)**
+kutusuna yapıştırıldı. Rozet **`#divSatinAl` bloğunun üstüne** giriyor =
+fiyatın altı, adet/SEPETE EKLE satırının üstü, tam genişlik.
+
+- Konum seçici: `#divSatinAl` (yoksa fallback `.basketBtn`). `insertBefore` ile üstüne.
+- `clear:both; width:100%` → tema float düzeninde yan yana kaymaz (aksi halde
+  adet kutusunun yanına sıkışıyordu).
+- Türkçe: düz karakter çalışıyor; panel bozarsa `\u` kaçışı (Kapıda Ödeme).
+- Retry (~10 sn) çünkü bloklar asenkron; emoji yok, düz tırnak, try/catch.
 
 ### Yol C: Gerçek tahsilat (ödeme yöntemi)
 Görsel rozetten bağımsız. Ticimax panel → **Ödeme Yöntemleri → Kapıda Ödeme**

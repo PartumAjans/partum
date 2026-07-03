@@ -1,22 +1,24 @@
 <!--
   KAPIDA ODEME ROZETI — selenbaspinar.com (Ticimax "FE8-UM" temasi)
   ------------------------------------------------------------------
-  KULLANIM: Bu blogun tamamini Ticimax panelinde
-    Tasarim -> Ozel Alanlar / Ekstra Kodlar -> BODY (sayfa sonu) kodu
-  alanina yapistir. ANA TEMA JS DOSYASININ ICINE EKLEME (beyaz ekran yapar).
+  KULLANIM: Ticimax panel -> Moduller -> Script Yonetimi -> satir 5 "Urun Detay"
+  -> kalem/duzenle -> bu blogun tamamini yapistir -> Kaydet.
+  ANA TEMA JS DOSYASINA EKLEME (beyaz ekran yapar).
 
-  - Emoji YOK (ikon SVG ile cizili), sadece duz tirnak var.
-  - try/catch ile korumali: hata olsa bile sayfayi kirmaz.
-  - .basketBtn temanin gercek "Sepete Ekle" butonu; beden alani #divUrunEkSecenek.
+  - Turkce karakterler dogrudan yazildi (dosya UTF-8). Panelde bozulursa \u kacisi
+    kullan: Kapıda Ödeme / Ürünü ... kartı ile ödeyin.
+  - Emoji YOK (ikon SVG), sadece duz tirnak, try/catch korumali.
+  - Konum: #divSatinAl (adet + SEPETE EKLE blogu) hemen ustu = fiyatin alti, tam genislik.
   - Bloklar asenkron geldigi icin kisa arali retry ile beklenir.
-  - Sadece urun detayinda calisir (baska sayfada .basketBtn yok -> sessizce durur).
+  - Sadece urun detayinda calisir (#divSatinAl yoksa sessizce durur).
 -->
 
 <style>
 .kapida-odeme-rozet{
   display:flex; align-items:center; gap:12px;
+  clear:both; width:100%;
   border:1px solid #e5e5e5; border-radius:10px;
-  padding:12px 14px; margin:0 0 20px; background:#fafafa;
+  padding:12px 14px; margin:16px 0; background:#fafafa;
   font-family:'Archivo', sans-serif;
 }
 .kapida-odeme-rozet .ko-ikon{ flex:0 0 auto; line-height:0; }
@@ -30,25 +32,20 @@
   var tries = 0;
   function ekle() {
     if (document.querySelector('.kapida-odeme-rozet')) return true;
-    var btn = document.querySelector('.basketBtn');
-    if (!btn) return false; // urun detay DOM'u henuz hazir degil (veya baska sayfa)
+    var hedef = document.querySelector('#divSatinAl') || document.querySelector('.basketBtn');
+    if (!hedef || !hedef.parentNode) return false;
     var el = document.createElement('div');
     el.className = 'kapida-odeme-rozet';
     el.innerHTML =
       '<span class="ko-ikon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="13" height="10" rx="1"></rect><path d="M14 9h4l3 3v4h-7z"></path><circle cx="6" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg></span>' +
-      '<div class="ko-metin"><strong>Kapida Odeme</strong>' +
-      '<small>Urunu teslim alirken nakit veya kredi karti ile odeyin</small></div>';
-    var opt = document.querySelector('#divUrunEkSecenek'); // beden/varyasyon alani
-    if (opt && opt.parentNode) {
-      opt.parentNode.insertBefore(el, opt.nextSibling);     // BEDEN alaninin hemen altina
-    } else {
-      btn.parentNode.insertBefore(el, btn);                 // yoksa butonun hemen ustune
-    }
+      '<div class="ko-metin"><strong>Kapıda Ödeme</strong>' +
+      '<small>Ürünü teslim alırken nakit veya kredi kartı ile ödeyin</small></div>';
+    hedef.parentNode.insertBefore(el, hedef);   // adet/SEPETE EKLE blogunun ustune
     return true;
   }
   var t = setInterval(function () {
     tries++;
-    try { if (ekle() || tries > 40) clearInterval(t); }      // ~10 sn dener, sonra durur
+    try { if (ekle() || tries > 40) clearInterval(t); }   // ~10 sn dener
     catch (e) { clearInterval(t); }
   }, 250);
 })();
