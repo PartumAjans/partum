@@ -1,0 +1,55 @@
+<!--
+  KAPIDA ODEME ROZETI — selenbaspinar.com (Ticimax "FE8-UM" temasi)
+  ------------------------------------------------------------------
+  KULLANIM: Bu blogun tamamini Ticimax panelinde
+    Tasarim -> Ozel Alanlar / Ekstra Kodlar -> BODY (sayfa sonu) kodu
+  alanina yapistir. ANA TEMA JS DOSYASININ ICINE EKLEME (beyaz ekran yapar).
+
+  - Emoji YOK (ikon SVG ile cizili), sadece duz tirnak var.
+  - try/catch ile korumali: hata olsa bile sayfayi kirmaz.
+  - .basketBtn temanin gercek "Sepete Ekle" butonu; beden alani #divUrunEkSecenek.
+  - Bloklar asenkron geldigi icin kisa arali retry ile beklenir.
+  - Sadece urun detayinda calisir (baska sayfada .basketBtn yok -> sessizce durur).
+-->
+
+<style>
+.kapida-odeme-rozet{
+  display:flex; align-items:center; gap:12px;
+  border:1px solid #e5e5e5; border-radius:10px;
+  padding:12px 14px; margin:0 0 20px; background:#fafafa;
+  font-family:'Archivo', sans-serif;
+}
+.kapida-odeme-rozet .ko-ikon{ flex:0 0 auto; line-height:0; }
+.kapida-odeme-rozet .ko-metin{ display:flex; flex-direction:column; }
+.kapida-odeme-rozet strong{ font-size:14px; color:#111; font-weight:700; }
+.kapida-odeme-rozet small{ font-size:12px; color:#666; margin-top:2px; line-height:1.35; }
+</style>
+
+<script>
+(function () {
+  var tries = 0;
+  function ekle() {
+    if (document.querySelector('.kapida-odeme-rozet')) return true;
+    var btn = document.querySelector('.basketBtn');
+    if (!btn) return false; // urun detay DOM'u henuz hazir degil (veya baska sayfa)
+    var el = document.createElement('div');
+    el.className = 'kapida-odeme-rozet';
+    el.innerHTML =
+      '<span class="ko-ikon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="13" height="10" rx="1"></rect><path d="M14 9h4l3 3v4h-7z"></path><circle cx="6" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg></span>' +
+      '<div class="ko-metin"><strong>Kapida Odeme</strong>' +
+      '<small>Urunu teslim alirken nakit veya kredi karti ile odeyin</small></div>';
+    var opt = document.querySelector('#divUrunEkSecenek'); // beden/varyasyon alani
+    if (opt && opt.parentNode) {
+      opt.parentNode.insertBefore(el, opt.nextSibling);     // BEDEN alaninin hemen altina
+    } else {
+      btn.parentNode.insertBefore(el, btn);                 // yoksa butonun hemen ustune
+    }
+    return true;
+  }
+  var t = setInterval(function () {
+    tries++;
+    try { if (ekle() || tries > 40) clearInterval(t); }      // ~10 sn dener, sonra durur
+    catch (e) { clearInterval(t); }
+  }, 250);
+})();
+</script>
