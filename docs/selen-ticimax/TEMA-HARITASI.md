@@ -66,6 +66,33 @@ Referans dosyada doğrulandı: orijinal temada emoji yok, akıllı tırnak yok,
 
 ---
 
+## 2.5) PANEL: Kod nereye yapıştırılır (DOĞRULANDI)
+
+Ticimax panel → sol menü **Modüller → Script Yönetimi**
+(`/Admin/DinamikScriptYonetimi.aspx`). Sayfa bazında script enjekte eden bir
+tablo var:
+
+| ID | Tanım | Not |
+|---|---|---|
+| 1 | Tüm Sayfalar | her sayfada çalışır |
+| 2 | Anasayfa | |
+| 3 | Kategori | |
+| 4 | Marka | |
+| **5** | **Ürün Detay** | **← kapıda ödeme rozeti BURAYA** (sadece ürün sayfası, tüm ürünler) |
+| 6 | Sipariş Tamamlandı | |
+| 7 | Sepet | |
+| 8 | Üye Ol Sayfası | |
+| 9 | Üyelik Tamamlandı | |
+
+Meta Pixel / Google kodları da burada duruyor → `<script>`/`<style>` blokları
+kabul ediliyor. Yapılacak: satır **5 (Ürün Detay)** → kalem/düzenle →
+`kapida-odeme-rozet.html` içeriğini etiketleriyle yapıştır → kaydet.
+
+**"Body kod alanı" YOK** bu panelde; Script Yönetimi bunun yerine geçiyor.
+Ana tema JS/CSS ise ayrı editörde (oraya DOKUNMA — beyaz ekran sebebi).
+
+Panel sürümü: `0.25.0702.1124` · Website: `8.13.750.0` · Yetkili: ANIL AYDIN.
+
 ## 3) "Kapıda Ödeme" — yapılacak işlem
 
 Amaç: ürün detayında **BEDEN alanı ile SEPETE EKLE butonu arasına** güven rozeti.
