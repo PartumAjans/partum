@@ -159,6 +159,22 @@ Ticimax global veri nesnesi: **`globalModel`** — özellikle:
   kalır). (2) Fiyat altına statik "Kapıda Ödeme İmkanı" notu (`.kapidaOdemeNot`,
   script ile enjekte; temada hazır öğe yok). Detay: `fiyat-kapida-odeme/README.md`.
 
+## 6.6 Kod nereye yapıştırılır? (Ticimax panel yerleşimi — DENENDİ)
+- **Genel/tüm site CSS+JS:** tema Custom CSS / Custom JS kutuları. Kampanya
+  çerçevesi buradan çalıştı. ANCAK: CSS **önbelleğe** takılabiliyor (Ticimax
+  `/customcss/ticimax/style.css` cache'liyor) ve custom JS, jQuery hazır değilse
+  **zamanlama** sorunu yaşayabiliyor.
+- **Sadece ürün detay HTML/JS için EN GÜVENİLİR yer:** panelde
+  **"Ürün Detay Script Alanı"** — `<style>` + `<script>` içeren TEK HTML blok
+  buraya yapıştırılır. Ana style.css'ten sonra ve sadece ürün detayında
+  yüklendiği için `!important` fiyat override'ları kesin tutar; sayfa tipi
+  kontrolüne gerek kalmaz. **Fiyat büyütme + kapıda ödeme bu alandan çalıştı.**
+- **Kural:** ürün detayına özel görsel/JS işleri için saf-JS (jQuery'siz) +
+  inline SVG + `<style>` içinde CSS kullan, "Ürün Detay Script Alanı"na koy.
+  Hazır şablon: `fiyat-kapida-odeme/YAPISTIR-tek-blok.html`.
+- Değişiklik görünmüyorsa: Ticimax **önbelleğini temizle** + tarayıcı
+  **hard refresh (Ctrl/Cmd+Shift+R)**.
+
 ## 7. Değişiklik yaparken kurallar (ÖNEMLİ)
 1. **Ana renk:** `var(--theme-color)` panelden gelir — global renk değişimi için
    önce onu değerlendir; tek tek hex değiştirme.
