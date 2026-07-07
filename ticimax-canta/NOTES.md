@@ -153,6 +153,12 @@ Ticimax global veri nesnesi: **`globalModel`** — özellikle:
   Dayandığı yapı: `#pnlFiyatlar` (fiyat paneli), `domProdcutDetail()` içinde
   `#divOzelAlan1..5 → .proDetailArea` taşıması.
 
+- **`fiyat-kapida-odeme/`** — (1) Satış fiyatı puntosu 16px→24px büyütüldü
+  (`#divTurkLirasiFiyat / #divIndirimsizFiyat / .IndirimliFiyatContent /
+  #divKDVDahilFiyat .right_line *`; üstü çizili `.PiyasafiyatiContent` küçük
+  kalır). (2) Fiyat altına statik "Kapıda Ödeme İmkanı" notu (`.kapidaOdemeNot`,
+  script ile enjekte; temada hazır öğe yok). Detay: `fiyat-kapida-odeme/README.md`.
+
 ## 7. Değişiklik yaparken kurallar (ÖNEMLİ)
 1. **Ana renk:** `var(--theme-color)` panelden gelir — global renk değişimi için
    önce onu değerlendir; tek tek hex değiştirme.
