@@ -1,0 +1,76 @@
+<!-- =====================================================================
+     VOUS — Satış fiyatı büyütme + Kapıda ödeme notu (TEK PARÇA)
+     ---------------------------------------------------------------------
+     Bu blok kendi kendine yeter: <style> + <script> içerir, jQuery
+     gerektirmez, saf JavaScript ile çalışır.
+
+     NEREYE YAPIŞTIRILIR?
+     - Ticimax panelinde HTML/script kabul eden bir alana (ör. "Özel Kodlar",
+       "Head/Footer Script", tema script alanı) OLDUĞU GİBİ yapıştırın.
+     - Ayrı "Custom CSS" ve "Custom JS" kutularınız varsa: <style> içini
+       CSS kutusuna, <script> içini JS kutusuna (etiketsiz) koyun.
+
+     NOT: Değişiklik görünmüyorsa Ticimax önbelleğini temizleyin ve
+     tarayıcıda hard refresh (Ctrl/Cmd + Shift + R) yapın.
+     ===================================================================== -->
+<style>
+/* ---- Satış fiyatı puntosu büyütüldü (24px). Üstü çizili eski fiyat küçük kalır ---- */
+.IndirimliFiyatContent .right_line *,
+#divTurkLirasiFiyat .right_line *,
+#divIndirimsizFiyat .right_line *,
+#divKDVDahilFiyat .right_line * {
+    font-size: 24px !important;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+}
+.PiyasafiyatiContent .right_line * { font-size: 16px !important; }
+@media (max-width: 767px) {
+    .IndirimliFiyatContent .right_line *,
+    #divTurkLirasiFiyat .right_line *,
+    #divIndirimsizFiyat .right_line *,
+    #divKDVDahilFiyat .right_line * { font-size: 20px !important; }
+}
+
+/* ---- Kapıda ödeme notu ---- */
+.kapidaOdemeNot { float: left; width: 100%; margin: 12px 0 0; clear: both; }
+.kapidaOdemeNot span {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px; border-radius: 8px;
+    background: #F2F5F6; color: #000;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; line-height: 1.2;
+}
+.kapidaOdemeNot .kapidaOdemeIkon { flex: 0 0 auto; width: 18px; height: 18px; color: #000; }
+@media (max-width: 767px) { .kapidaOdemeNot span { font-size: 13px; padding: 7px 14px; } }
+</style>
+
+<script>
+(function () {
+    var METIN = "Kapıda Ödeme İmkanı";
+    var IKON = '<svg class="kapidaOdemeIkon" viewBox="0 0 24 24" width="18" height="18" '
+        + 'fill="none" stroke="currentColor" stroke-width="1.6" '
+        + 'stroke-linecap="round" stroke-linejoin="round">'
+        + '<path d="M3 7h15a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h11"/>'
+        + '<path d="M16 12h.01"/></svg>';
+
+    function run() {
+        var price = document.getElementById("pnlFiyatlar");
+        if (!price) { return false; }                 // sadece ürün detay sayfası
+        if (document.querySelector(".kapidaOdemeNot")) { return true; }
+
+        var d = document.createElement("div");
+        d.className = "kapidaOdemeNot";
+        d.innerHTML = "<span>" + IKON + "<b>" + METIN + "</b></span>";
+
+        var frame = document.querySelector(".kampanyaCerceve");
+        if (frame) { frame.parentNode.insertBefore(d, frame.nextSibling); }
+        else { price.parentNode.insertBefore(d, price.nextSibling); }
+        return true;
+    }
+
+    if (document.readyState !== "loading") { run(); }
+    document.addEventListener("DOMContentLoaded", run);
+    window.addEventListener("load", run);
+    // Ticimax fiyatı geç basarsa: 10 sn boyunca dene
+    var n = 0, t = setInterval(function () { if (run() || ++n > 25) { clearInterval(t); } }, 400);
+})();
+</script>
