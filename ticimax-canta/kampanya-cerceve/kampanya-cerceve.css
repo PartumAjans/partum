@@ -1,0 +1,68 @@
+/* =====================================================================
+   VOUS — Fiyat Altı Kampanya Çerçevesi (stil)
+   Custom CSS alanının sonuna ekleyin.
+   Tasarım sitenin siyah/minimal diline uygundur; ana renk
+   var(--theme-color) yoksa siyaha düşer.
+   ===================================================================== */
+
+/* Çerçeve kapsayıcısı — fiyatın altında tam satır */
+.kampanyaCerceve {
+    float: left;
+    width: 100%;
+    margin: 16px 0 6px;
+    clear: both;
+}
+
+/* Çerçevenin kendisi — metni saran kutu */
+.kampanyaCerceve .kampanyaCerceveIc {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 20px;
+    border: 1.5px dashed var(--theme-color, #000);
+    border-radius: 10px;
+    background: #fff;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+/* Baştaki hediye ikonu (FontAwesome tema tarafından yüklü) */
+.kampanyaCerceve .kampanyaCerceveIc:before {
+    content: '\f06b';               /* hediye ikonu */
+    font-family: 'FontAwesome';
+    font-weight: 400;
+    margin-right: 8px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/* Mobil ince ayar */
+@media (max-width: 767px) {
+    .kampanyaCerceve { margin: 12px 0 4px; }
+    .kampanyaCerceve .kampanyaCerceveIc {
+        padding: 9px 16px;
+        font-size: 13px;
+    }
+}
+
+/* ---------------------------------------------------------------------
+   ALTERNATİF GÖRÜNÜM (opsiyonel):
+   Kesik çizgi yerine dolgulu (siyah zemin, beyaz yazı) çerçeve isterseniz
+   yukarıdaki .kampanyaCerceveIc bloğunu silip aşağıdakini kullanın.
+
+   .kampanyaCerceve .kampanyaCerceveIc {
+       display: inline-block; vertical-align: top;
+       padding: 11px 22px; border-radius: 10px;
+       background: var(--theme-color, #000); color: #fff;
+       font-family: 'Inter', sans-serif; font-size: 15px;
+       font-weight: 700; letter-spacing: 0.2px; text-transform: uppercase;
+   }
+   .kampanyaCerceve .kampanyaCerceveIc:before {
+       content: '\f06b'; font-family: 'FontAwesome';
+       margin-right: 8px; color: #fff;
+   }
+   --------------------------------------------------------------------- */

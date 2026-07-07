@@ -144,6 +144,15 @@ Ticimax global veri nesnesi: **`globalModel`** — özellikle:
 
 ---
 
+## 6.5 Yapılan özel çalışmalar (bu repoda)
+- **`kampanya-cerceve/`** — Ürün detayında fiyat altı kampanya çerçevesi
+  (ör. "2 AL 1 ÖDE"). Bir özel alana (`#divOzelAlanN`) bağlıdır: alan doluysa
+  fiyatın altına `.kampanyaCerceve` çerçevesi basılır. Değer bir anahtar kelime
+  ise script'teki hazır HTML tasarım, değilse yazılan metin gösterilir. Boşsa
+  çerçeve çıkmaz. CSS + JS panele yapıştırılır. Detay: `kampanya-cerceve/README.md`.
+  Dayandığı yapı: `#pnlFiyatlar` (fiyat paneli), `domProdcutDetail()` içinde
+  `#divOzelAlan1..5 → .proDetailArea` taşıması.
+
 ## 7. Değişiklik yaparken kurallar (ÖNEMLİ)
 1. **Ana renk:** `var(--theme-color)` panelden gelir — global renk değişimi için
    önce onu değerlendir; tek tek hex değiştirme.
