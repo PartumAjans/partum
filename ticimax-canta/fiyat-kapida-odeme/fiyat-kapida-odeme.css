@@ -1,0 +1,64 @@
+/* =====================================================================
+   VOUS — Satış fiyatı büyütme + Kapıda ödeme notu
+   Custom CSS alanının sonuna ekleyin.
+   ===================================================================== */
+
+/* ---- 1) Satış fiyatı puntosu büyütüldü (16px -> 24px) ----
+   Sadece MÜŞTERİNİN ÖDEDİĞİ fiyat büyür. Üstü çizili piyasa/eski fiyat
+   (.PiyasafiyatiContent) küçük kalır. */
+.IndirimliFiyatContent .right_line *,
+#divTurkLirasiFiyat .right_line *,
+#divIndirimsizFiyat .right_line *,
+#divKDVDahilFiyat .right_line * {
+    font-size: 24px !important;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+}
+
+/* Piyasa/eski fiyat (üstü çizili) küçük kalsın */
+.PiyasafiyatiContent .right_line * {
+    font-size: 16px !important;
+}
+
+@media (max-width: 767px) {
+    .IndirimliFiyatContent .right_line *,
+    #divTurkLirasiFiyat .right_line *,
+    #divIndirimsizFiyat .right_line *,
+    #divKDVDahilFiyat .right_line * {
+        font-size: 20px !important;
+    }
+}
+
+/* ---- 2) Kapıda ödeme notu (fiyatın altı) ---- */
+.kapidaOdemeNot {
+    float: left;
+    width: 100%;
+    margin: 12px 0 0;
+    clear: both;
+}
+.kapidaOdemeNot span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: #F2F5F6;
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.kapidaOdemeNot span b {
+    font-weight: 600;
+}
+.kapidaOdemeNot .kapidaOdemeIkon {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    color: #000;                    /* ikon rengi (currentColor) */
+}
+
+@media (max-width: 767px) {
+    .kapidaOdemeNot span { font-size: 13px; padding: 7px 14px; }
+}
