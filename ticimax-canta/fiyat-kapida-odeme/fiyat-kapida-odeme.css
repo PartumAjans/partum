@@ -49,11 +49,14 @@
     font-weight: 600;
     line-height: 1.2;
 }
-.kapidaOdemeNot span:before {
-    content: '\f0d6';               /* para/ödeme ikonu (FontAwesome) */
-    font-family: 'FontAwesome';
-    font-weight: 400;
-    font-size: 16px;
+.kapidaOdemeNot span b {
+    font-weight: 600;
+}
+.kapidaOdemeNot .kapidaOdemeIkon {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    color: #000;                    /* ikon rengi (currentColor) */
 }
 
 @media (max-width: 767px) {
