@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yurtiçi Kargo Kampanya Bandı — Eda Erateşli</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      background: #ffffff;
+      padding: 40px 20px;
+    }
+
+    .kargo-banner {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #2f6fa5;
+      border-radius: 8px;
+      padding: 30px 24px 34px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    /* --- Logo --- */
+    .kargo-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .kargo-logo svg { width: 66px; height: 52px; display: block; }
+
+    .kargo-logo-text { text-align: left; line-height: 1; }
+
+    .kargo-logo-text .brand {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .kargo-logo-text .brand .kargo { color: #f5a623; }
+    .kargo-logo-text .brand .yurtici { color: #ffffff; }
+
+    .kargo-logo-text .slogan {
+      font-size: 13px;
+      font-style: italic;
+      color: #ffffff;
+      opacity: 0.95;
+      margin-top: 5px;
+    }
+
+    /* --- Metin --- */
+    .kargo-company {
+      font-size: 17px;
+      font-style: italic;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .kargo-desc {
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 540px;
+      margin: 0 auto 22px;
+    }
+    .kargo-desc strong { font-weight: 800; }
+
+    /* --- Buton --- */
+    .kargo-btn {
+      display: inline-block;
+      border: 1px solid #ffffff;
+      border-radius: 4px;
+      padding: 12px 26px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .kargo-btn:hover { background: #ffffff; color: #2f6fa5; }
+
+    @media (max-width: 560px) {
+      .kargo-banner { padding: 26px 18px 30px; }
+      .kargo-logo svg { width: 56px; height: 44px; }
+      .kargo-logo-text .brand { font-size: 25px; }
+      .kargo-desc { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="kargo-banner">
+
+    <!-- Logo -->
+    <div class="kargo-logo">
+      <svg viewBox="0 0 66 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Yurtiçi Kargo">
+        <path d="M2 14 L26 44 L20 8 Z" fill="#ffffff"/>
+        <path d="M30 4 L54 4 L34 44 L26 30 Z" fill="#f5a623"/>
+      </svg>
+      <div class="kargo-logo-text">
+        <div class="brand"><span class="yurtici">yurtiçi</span><span class="kargo">kargo</span></div>
+        <div class="slogan">Söz verdiğimiz gibi</div>
+      </div>
+    </div>
+
+    <!-- Firma + açıklama -->
+    <div class="kargo-company">Eda Erateşli Tekstil Ltd Şti</div>
+    <p class="kargo-desc">
+      <strong>955885893</strong> Kodunu kullanarak Yurtiçi Kargo ile
+      <strong>3 gün içinde</strong> gönderilmesi gerekmektedir.
+    </p>
+
+    <!-- Buton -->
+    <a href="#" class="kargo-btn">İNDİRİMLİ KARGO BEDELİ 340 TL</a>
+
+  </div>
+</body>
+</html>
