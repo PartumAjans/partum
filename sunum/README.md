@@ -1,6 +1,6 @@
-# Ragyu — Dijital Pazarlama Sunumu
+# Ragyu — Dijital Sistem Analizi & Çözüm Önerisi Sunumu
 
-Ragyu premium kasap+ firmasına yönelik hazırlanan dijital büyüme sunumu.
+Ragyu premium kasap+ firmasına yönelik hazırlanan sunum. Yaklaşım: **mevcut sistemdeki eksikleri tespit et → her birine somut çözüm sun → beklenen etkiyi göster.**
 
 ## Dosyalar
 
@@ -9,17 +9,21 @@ Ragyu premium kasap+ firmasına yönelik hazırlanan dijital büyüme sunumu.
 
 ## İçerik akışı (11 slayt)
 
-1. Kapak — Dijital büyüme ortaklığı sunumu
-2. Marka Analizi — Ragyu'nun güçlü yönleri
-3. Fırsatlar & Dijital Öncelikler
-4. Dört Sütunlu Büyüme Yaklaşımı
-5. Dijital Pazarlama Süreçleri
-6. Reklam Yönetimi (Meta & Google)
-7. İçerik Üretimi
-8. Ticimax Altyapı & Teknik Destek
-9. İlk 90 Günlük Çalışma Planı
-10. Ölçüm, KPI & Raporlama
-11. Özet & İletişim
+1. Kapak — Dijital Sistem Analizi & Çözüm Önerisi
+2. Yaklaşımımız — güçlü temeli koru + sistemi denetle (+ teşhis notu)
+3. Yönetici Özeti — Tespit edilen 8 temel eksik (gap map)
+4. Alan 01 — Ölçüm & Dijital Pazarlama: Eksik → Çözüm → Etki
+5. Alan 02 — Reklam Yönetimi: Eksik → Çözüm → Etki
+6. Alan 03 — İçerik & Dönüşüm: Eksik → Çözüm → Etki
+7. Alan 04 — Ticimax Altyapı & Teknik: Eksik → Çözüm → Etki
+8. İlk 30 günde hızlı kazanımlar (düşük efor / yüksek etki)
+9. Eksikleri kapatma yol haritası — 90 gün
+10. Başarıyı nasıl ölçüp kanıtlayacağız (KPI & raporlama)
+11. Özet & sonraki adım
+
+## Önemli not
+
+Slaytlardaki eksik tespitleri, herkese açık web (ragyu.com.tr) ve sosyal medya (@ragyu.kasap) incelemesine dayanır. Kesin teşhis, firmanın panel ve reklam/analitik hesap erişimiyle netleştirilmelidir — sunumda da bu şekilde konumlandırılmıştır.
 
 ## Yeniden üretmek için
 
