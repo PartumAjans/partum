@@ -40,6 +40,36 @@ create trigger on_auth_user_created
   for each row execute function public.handle_new_user();
 
 -- ----------------------------------------------------------------------------
+-- JARVIS GÖREVLERİ (komuta merkezi yapılacaklar listesi)
+-- Not: Uygulamanın ilk sürümü görevleri bellek-içi tutar. Kalıcılık isteniyorsa
+-- bu tabloyu oluşturun ve lib/jarvis/tasks.ts içindeki TODO'yu uygulayın.
+-- ----------------------------------------------------------------------------
+create table if not exists public.jarvis_tasks (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  note text,
+  priority text not null default 'normal' check (priority in ('low', 'normal', 'high')),
+  status text not null default 'open' check (status in ('open', 'done')),
+  client text,
+  due date,
+  created_by uuid references auth.users (id) on delete set null,
+  created_at timestamptz not null default now()
+);
+
+alter table public.jarvis_tasks enable row level security;
+
+-- Yalnızca yöneticiler görevleri görür/yönetir (servis anahtarı zaten RLS'yi atlar).
+drop policy if exists "yonetici gorevleri" on public.jarvis_tasks;
+create policy "yonetici gorevleri"
+  on public.jarvis_tasks for all
+  using (
+    exists (
+      select 1 from public.profiles p
+      where p.id = auth.uid() and p.role = 'admin'
+    )
+  );
+
+-- ----------------------------------------------------------------------------
 -- KURULUM NOTLARI
 -- 1. Supabase Dashboard > Authentication > Users'tan müşteri ekleyin
 --    (veya müşteri kendi kaydolsun). Profili otomatik oluşur.

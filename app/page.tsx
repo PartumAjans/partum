@@ -4,5 +4,5 @@ import { getCurrentUser } from "@/lib/auth";
 export default async function Home() {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
-  redirect(user.role === "admin" ? "/admin" : "/dashboard");
+  redirect(user.role === "admin" ? "/jarvis" : "/dashboard");
 }

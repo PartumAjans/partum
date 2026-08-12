@@ -14,7 +14,40 @@ merkezi olarak (Meta System User token) sağlanır; müşteri hiçbir şey bağl
 - 📋 **Kampanya kırılımı:** kampanya bazında detaylı tablo
 - 🗓️ Tarih aralığı seçimi (hazır aralıklar + özel tarih)
 - 👤 **Yönetici paneli:** müşterileri reklam hesaplarına eşleme + rapor önizleme
+- 🤖 **Jarvis komuta merkezi:** tüm ajans işlerini tek ekranda toplayan AI asistan
 - 🧩 Büyütmeye uygun mimari (yeni metrik/sayfa eklemek kolay)
+
+## 🤖 Jarvis — Ajans Komuta Merkezi
+
+Yönetici olarak giriş yaptığında karşına **Jarvis** çıkar (`/jarvis`): ajansın
+genel durumunu tek ekranda gösteren bir komuta merkezi + doğal dille
+konuşabileceğin bir AI asistan.
+
+**Neler yapar:**
+
+- 📊 **Özet şerit:** toplam 7 günlük harcama, ortalama ROAS, riskli müşteri
+  sayısı, açık görev sayısı
+- 🚦 **Müşteri sağlık kartları:** her müşteri için son 7 günün ROAS'ına göre
+  ok / izle / risk sinyali; riskliler en üstte
+- ✅ **Görev tahtası:** yapılacakları ekle/tamamla/sil
+- 💬 **AI sohbet (Jarvis):** "müşteri durumu", "Örnek Mağaza raporu",
+  "şunu görev olarak ekle", "Köşe Kafe'ye haftalık özet WhatsApp taslağı yaz"
+  gibi isteklerde araçları otomatik kullanır
+
+**İki çalışma modu:**
+
+| Mod | Koşul | Davranış |
+| --- | --- | --- |
+| **AI aktif** | `ANTHROPIC_API_KEY` tanımlı | Claude ile serbest sohbet + akıllı araç kullanımı + mesaj taslakları |
+| **Temel mod** | anahtar yok | Rapor/görev/müşteri özeti komutları yine çalışır (kural tabanlı) |
+
+Anahtarı [console.anthropic.com](https://console.anthropic.com)'dan alıp
+`.env.local` içine `ANTHROPIC_API_KEY` olarak girmen yeterli. Model
+`ANTHROPIC_MODEL` ile değiştirilebilir (varsayılan `claude-sonnet-5`).
+
+> **Güvenlik notu:** WhatsApp/e-posta araçları şimdilik yalnızca **taslak**
+> üretir — hiçbir şey otomatik gönderilmez. Gerçek gönderim ve video editi gibi
+> yetenekler sonraki fazda "connector" olarak eklenecek şekilde tasarlandı.
 
 ## Teknoloji
 
@@ -108,16 +141,25 @@ app/
   login/            Giriş sayfası
   dashboard/        Müşteri rapor ekranı
   admin/            Yönetici: müşteri yönetimi + rapor önizleme
-  actions/          Sunucu eylemleri (auth, admin)
-components/          Arayüz bileşenleri (grafik, tablo, kartlar...)
+  jarvis/           Jarvis komuta merkezi (AI asistan + dashboard)
+  api/jarvis/chat/  Jarvis sohbet uç noktası (araç kullanımı)
+  actions/          Sunucu eylemleri (auth, admin, jarvis görevleri)
+components/
+  jarvis/           ChatPanel, TaskBoard, ClientHealthCards
 lib/
   meta.ts           Meta API istemcisi + demo veri üreteci
   auth.ts           Oturum yönetimi
   auth-supabase.ts  Supabase kimlik doğrulama (üretim)
   users.ts          Kullanıcı/eşleştirme işlemleri
   types.ts          Ortak tipler
+  jarvis/
+    agent.ts        Claude tool-use döngüsü + kural tabanlı yedek mod
+    tools.ts        Jarvis araçları (rapor, görev, taslak...)
+    context.ts      Müşteri sağlık görünümü toplayıcı
+    tasks.ts        Görev deposu (bellek-içi; Supabase'e hazır)
+    types.ts        Jarvis tipleri
 supabase/
-  schema.sql        Veritabanı şeması
+  schema.sql        Veritabanı şeması (profiles + jarvis_tasks)
 ```
 
 ## Sonraki Geliştirme Fikirleri

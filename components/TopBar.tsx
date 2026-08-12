@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { logoutAction } from "@/app/actions/auth";
 import type { User } from "@/lib/types";
 
@@ -14,6 +15,22 @@ export default function TopBar({ user }: { user: User }) {
             <span className="ml-1 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
               Yönetici
             </span>
+          )}
+          {user.role === "admin" && (
+            <nav className="ml-3 hidden items-center gap-1 sm:flex">
+              <Link
+                href="/jarvis"
+                className="rounded-lg px-2.5 py-1 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-brand-700"
+              >
+                Jarvis
+              </Link>
+              <Link
+                href="/admin"
+                className="rounded-lg px-2.5 py-1 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-brand-700"
+              >
+                Müşteriler
+              </Link>
+            </nav>
           )}
         </div>
 
