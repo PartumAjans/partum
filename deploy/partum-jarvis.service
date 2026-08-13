@@ -1,0 +1,23 @@
+# Partum Jarvis — systemd servisi
+# Kurulum: deploy/install-service.sh betiği bu dosyayı doğru yola kopyalar.
+# Manuel: bu dosyadaki __USER__ ve __DIR__ değerlerini düzenleyip
+#         /etc/systemd/system/partum-jarvis.service olarak kaydet.
+
+[Unit]
+Description=Partum Jarvis Panel (Next.js)
+After=network.target
+
+[Service]
+Type=simple
+User=__USER__
+WorkingDirectory=__DIR__
+Environment=NODE_ENV=production
+Environment=PORT=3000
+# .env.local Next.js tarafından otomatik okunur (ANTHROPIC_API_KEY, DEMO_MODE, vb.)
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5
+# Bağlantı kopsa/sunucu yeniden başlasa bile Jarvis geri gelir
+
+[Install]
+WantedBy=multi-user.target

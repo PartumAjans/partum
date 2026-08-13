@@ -128,7 +128,7 @@ AUTH_SECRET=<openssl rand -base64 32 ile üretin>
 
 ## Dağıtım (Deploy)
 
-Vercel önerilir:
+**Vercel** (en hızlı):
 
 ```bash
 npm i -g vercel
@@ -137,6 +137,11 @@ vercel
 
 Ortam değişkenlerini Vercel proje ayarlarından ekleyin (`.env.local`'deki
 değerler). `DEMO_MODE=false` yapmayı unutmayın.
+
+**VPS'te 7/24 (Hostinger vb.):** Jarvis'i hiç kapanmayan bir sunucuda çalıştırıp
+telefondan erişmek için sıfırdan adım adım rehber → **[DEPLOY.md](DEPLOY.md)**.
+Hazır betikler: `deploy/setup.sh` (kur + derle) ve `deploy/install-service.sh`
+(systemd ile 7/24 servis).
 
 ## Proje Yapısı
 
