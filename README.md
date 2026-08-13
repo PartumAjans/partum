@@ -33,6 +33,10 @@ konuşabileceğin bir AI asistan.
 - 💬 **AI sohbet (Jarvis):** "müşteri durumu", "Örnek Mağaza raporu",
   "şunu görev olarak ekle", "Köşe Kafe'ye haftalık özet WhatsApp taslağı yaz"
   gibi isteklerde araçları otomatik kullanır
+- 🎙️ **Sesli mod ("Hey Jarvis"):** tarayıcının yerel ses motoruyla (Web Speech
+  API) sesli konuşma — "Hey Jarvis" de, uyansın; sesli komut ver, sesli cevap
+  alsın. Ek servis/anahtar gerekmez; **Chrome/Edge** önerilir (yazarak her
+  tarayıcıda çalışır). Mikrofon izni istenir. 🎙️ düğmesi = bas-konuş.
 
 **İki çalışma modu:**
 

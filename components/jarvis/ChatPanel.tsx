@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useSpeech } from "./useSpeech";
 
 interface Msg {
   role: "user" | "assistant";
@@ -21,14 +22,26 @@ export default function ChatPanel() {
     {
       role: "assistant",
       content:
-        "Selam! Ben Jarvis 👋 Ajans işlerini birlikte toparlayalım. Müşteri durumlarını sorabilir, reklam raporu isteyebilir, görev ekletebilir ya da mesaj taslağı yazdırabilirsin.",
+        "Selam! Ben Jarvis 👋 Yazabilir ya da “Hey Jarvis” diyerek sesli konuşabilirsin. Müşteri durumlarını sorabilir, reklam raporu isteyebilir, görev/planlama verebilirsin.",
       live: true,
     },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [speakReplies, setSpeakReplies] = useState(false);
+
   const scrollRef = useRef<HTMLDivElement>(null);
+  const messagesRef = useRef<Msg[]>(messages);
+  const speakRef = useRef<((t: string) => void) | null>(null);
+  const speakRepliesRef = useRef(false);
+
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
+  useEffect(() => {
+    speakRepliesRef.current = speakReplies;
+  }, [speakReplies]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({
@@ -37,12 +50,13 @@ export default function ChatPanel() {
     });
   }, [messages, loading]);
 
-  async function send(text: string) {
+  const send = useCallback(async (text: string) => {
     const content = text.trim();
-    if (!content || loading) return;
+    if (!content) return;
     setError(null);
 
-    const next: Msg[] = [...messages, { role: "user", content }];
+    const base = messagesRef.current;
+    const next: Msg[] = [...base, { role: "user", content }];
     setMessages(next);
     setInput("");
     setLoading(true);
@@ -66,31 +80,105 @@ export default function ChatPanel() {
           live: data.live,
         },
       ]);
+      if (speakRepliesRef.current && data.content) {
+        speakRef.current?.(data.content);
+      }
     } catch (e) {
       setError((e as Error).message);
       setMessages((cur) => [
         ...cur,
-        {
-          role: "assistant",
-          content: "Bir sorun oluştu. Lütfen tekrar dener misin?",
-        },
+        { role: "assistant", content: "Bir sorun oluştu. Lütfen tekrar dener misin?" },
       ]);
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
+
+  // Ses motoru
+  const {
+    supported,
+    status,
+    wakeEnabled,
+    interim,
+    startWake,
+    stopWake,
+    pushToTalk,
+    speak,
+    stopSpeaking,
+  } = useSpeech({ lang: "tr-TR", onCommand: (t) => send(t) });
+
+  useEffect(() => {
+    speakRef.current = speak;
+  }, [speak]);
+
+  const toggleWake = () => {
+    if (wakeEnabled) {
+      stopWake();
+    } else {
+      setSpeakReplies(true); // uyandırma modunda geri konuşsun
+      startWake();
+    }
+  };
+
+  const statusLabel: Record<string, string> = {
+    wake: '“Hey Jarvis” bekleniyor…',
+    command: "Dinliyorum…",
+    speaking: "Konuşuyorum…",
+    denied: "Mikrofon izni reddedildi",
+    unsupported: "Bu tarayıcı sesi desteklemiyor",
+    off: "",
+  };
+  const listening = status === "wake" || status === "command";
 
   return (
     <div className="card flex h-[calc(100vh-9rem)] min-h-[28rem] flex-col">
       {/* başlık */}
-      <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">
-          J
+      <div className="flex items-center justify-between gap-2 border-b border-slate-200 px-4 py-3">
+        <div className="flex items-center gap-2">
+          <div
+            className={`flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold text-white transition ${
+              status === "speaking"
+                ? "animate-pulse bg-emerald-500"
+                : listening
+                  ? "animate-pulse bg-brand-500"
+                  : "bg-brand-600"
+            }`}
+          >
+            J
+          </div>
+          <div>
+            <div className="text-sm font-semibold text-slate-900">Jarvis</div>
+            <div className="text-xs text-slate-500">
+              {statusLabel[status] || "Ajans asistanın"}
+            </div>
+          </div>
         </div>
-        <div>
-          <div className="text-sm font-semibold text-slate-900">Jarvis</div>
-          <div className="text-xs text-slate-500">Ajans asistanın</div>
-        </div>
+
+        {supported && (
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => setSpeakReplies((v) => !v)}
+              title={speakReplies ? "Sesli yanıt açık" : "Sesli yanıt kapalı"}
+              className={`rounded-lg border px-2 py-1 text-sm transition ${
+                speakReplies
+                  ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                  : "border-slate-200 text-slate-400 hover:bg-slate-50"
+              }`}
+            >
+              {speakReplies ? "🔊" : "🔇"}
+            </button>
+            <button
+              onClick={toggleWake}
+              className={`rounded-lg border px-2.5 py-1 text-xs font-medium transition ${
+                wakeEnabled
+                  ? "border-brand-300 bg-brand-50 text-brand-700"
+                  : "border-slate-200 text-slate-500 hover:bg-slate-50"
+              }`}
+            >
+              {wakeEnabled ? "● Dinliyor" : "Hey Jarvis"}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* mesajlar */}
@@ -142,9 +230,38 @@ export default function ChatPanel() {
         )}
       </div>
 
+      {/* canlı ses durumu / interim transkript */}
+      {(listening || status === "speaking") && (
+        <div className="flex items-center gap-2 border-t border-slate-100 bg-slate-50 px-4 py-2">
+          <span className="relative flex h-2.5 w-2.5">
+            <span
+              className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${
+                status === "speaking" ? "bg-emerald-400" : "bg-brand-400"
+              }`}
+            />
+            <span
+              className={`relative inline-flex h-2.5 w-2.5 rounded-full ${
+                status === "speaking" ? "bg-emerald-500" : "bg-brand-500"
+              }`}
+            />
+          </span>
+          <span className="flex-1 truncate text-xs text-slate-500">
+            {interim || statusLabel[status]}
+          </span>
+          {status === "speaking" && (
+            <button
+              onClick={stopSpeaking}
+              className="rounded-md border border-slate-200 px-2 py-0.5 text-xs text-slate-500 hover:bg-white"
+            >
+              Sustur
+            </button>
+          )}
+        </div>
+      )}
+
       {/* öneriler */}
-      {messages.length <= 2 && (
-        <div className="flex flex-wrap gap-1.5 px-4 pb-2">
+      {messages.length <= 2 && !listening && (
+        <div className="flex flex-wrap gap-1.5 px-4 pb-2 pt-2">
           {SUGGESTIONS.map((s) => (
             <button
               key={s}
@@ -158,8 +275,17 @@ export default function ChatPanel() {
         </div>
       )}
 
-      {error && (
-        <div className="px-4 pb-1 text-xs text-red-600">{error}</div>
+      {error && <div className="px-4 pb-1 text-xs text-red-600">{error}</div>}
+      {status === "denied" && (
+        <div className="px-4 pb-1 text-xs text-amber-600">
+          Mikrofon izni gerekli. Tarayıcı adres çubuğundaki kilit simgesinden
+          mikrofona izin verip tekrar dene.
+        </div>
+      )}
+      {!supported && (
+        <div className="px-4 pb-1 text-xs text-slate-400">
+          Sesli mod için Chrome veya Edge kullan (yazarak her tarayıcıda çalışır).
+        </div>
       )}
 
       {/* girdi */}
@@ -170,6 +296,21 @@ export default function ChatPanel() {
         }}
         className="flex items-end gap-2 border-t border-slate-200 p-3"
       >
+        {supported && (
+          <button
+            type="button"
+            onClick={pushToTalk}
+            disabled={status === "command" || status === "speaking"}
+            title="Bas-konuş"
+            className={`rounded-lg border px-3 py-2 text-sm transition disabled:opacity-40 ${
+              status === "command"
+                ? "border-brand-300 bg-brand-50 text-brand-700"
+                : "border-slate-300 text-slate-600 hover:bg-slate-50"
+            }`}
+          >
+            🎙️
+          </button>
+        )}
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -180,7 +321,7 @@ export default function ChatPanel() {
             }
           }}
           rows={1}
-          placeholder="Jarvis'e yaz… (örn. 'bugün neler var?')"
+          placeholder="Jarvis'e yaz ya da 🎙️ ile konuş…"
           className="max-h-32 flex-1 resize-none rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
         />
         <button
